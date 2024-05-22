@@ -4,6 +4,9 @@
 
 This project is a Tetris game developed in VBA (Visual Basic for Applications) for Microsoft Excel. It includes various modules that handle the game logic, UI updates, key handlers, timer events, and utilities.
 
+## Preview
+- ![image](https://github.com/kazmatw/VBA-TETRIS/assets/61039945/356d46dd-5848-463d-a512-2e8d0699766d)
+
 ## Project Structure
 
 - **Microsoft Excel Objects**
