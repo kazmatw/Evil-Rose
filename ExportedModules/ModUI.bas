@@ -1,4 +1,5 @@
 Attribute VB_Name = "ModUI"
+' This is ModUI module
 Sub CreateGameSheet()
     ' Declare variables for colors, dimensions, and positions of the game and statistics fields
     Dim PFBBC, PFBNC, PFBDC As Long  ' Game field border colors
