@@ -98,8 +98,8 @@ Function GenerateBlocks(Blo As Byte)
         Call AddBlock(CurBlo.X, CurBlo.Y, 1)
         If Blo = 1 Then Sta.Blo = Sta.Blo + 1
         Call DrawPlayingField(1)
-        'Call DisplayNextBlocks
-        'Call DisplayStatistics
+        Call DisplayNextBlocks
+        Call DisplayStatistics
     End If
 
     ' Adjust timers based on level

@@ -32,8 +32,8 @@ Sub CreateGameSheet()
         SFBNC = .BorNCol
         .H = PFH
         .Y = PFY + PFW + 3
-        SFH = .H
         SFW = .W
+        SFH = .H
         SFX = .X
         SFY = .Y
     End With
@@ -46,16 +46,13 @@ Sub CreateGameSheet()
     End With
     
     ' Draw game sheet background
-    Range(Cells(PFX - 2, PFY - 2), Cells(PFX - 2, PFY + PFW + 1)).Interior.Color = GamSheBC  '(1,1)~(1,12)
-    Range(Cells(PFX + PFH + 1, PFY - 2), Cells(PFX + PFH + 1, PFY + PFW + 1)).Interior.Color = GamSheBC ' (20,1)~(20,12)
-    Range(Cells(PFX - 2, PFY - 2), Cells(PFX + PFH + 1, PFY - 2)).Interior.Color = GamSheBC '(1,1)~(20,1)
-    Range(Cells(PFX - 2, PFY + PFW + 1), Cells(PFX + PFH + 1, PFY + PFW + 1)).Interior.Color = GamSheBC '(1,12)~(20,12)
-    
-    '2p
-    Range(Cells(PFX - 2, PFY + 18), Cells(PFX - 2, PFY + PFW + 21)).Interior.Color = GamSheBC '(1,21)~(1,32)
-    Range(Cells(PFX + PFH + 1, PFY + 18), Cells(PFX + PFH + 1, PFY + PFW + 21)).Interior.Color = GamSheBC ' (20,21)~(20,32)
-    Range(Cells(PFX - 2, PFY + 18), Cells(PFX + PFH + 1, PFY + PFW + 21)).Interior.Color = GamSheBC '(1,21)~(20,21)
-    Range(Cells(PFX - 2, PFY + 18), Cells(PFX + PFH + 1, PFY + PFW + 21)).Interior.Color = GamSheBC '(1,32)~(20,32)
+    Range(Cells(PFX - 2, PFY - 2), Cells(PFX - 2, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
+    Range(Cells(PFX + PFH + 1, PFY - 2), Cells(PFX + PFH + 1, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
+    Range(Cells(PFX + PFH + 2, PFY - 2), Cells(PFX + PFH + 12, PFY + PFW + SFW + 10)).Interior.Color = xlNone
+    Range(Cells(PFX - 2, PFY - 2), Cells(PFX + PFH + 1, PFY - 2)).Interior.Color = GamSheBC
+    Range(Cells(PFX - 2, PFY + PFW + 1), Cells(PFX + PFH + 1, PFY + PFW + 1)).Interior.Color = GamSheBC
+    Range(Cells(PFX - 2, PFY + PFW + SFW + 4), Cells(PFX + PFH + 1, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
+    Range(Cells(PFX - 2, PFY + PFW + SFW + 5), Cells(PFX + PFH + 1, PFY + PFW + SFW + 10)).Interior.Color = xlNone
    
     ' Draw game field with borders and background color
     With Range(Cells(PFX - 1, PFY - 1), Cells(PFX + PFH, PFY + PFW))
@@ -68,24 +65,8 @@ Sub CreateGameSheet()
         .Borders(10).Color = PFBDC  ' Right border
         .Borders(10).Weight = 4
     End With
-    
     ' Set interior color for the borders
     Range(Cells(PFX - 1, PFY - 1), Cells(PFX + PFH, PFY + PFW)).Interior.Color = PFBNC
-    
-    '2p
-    With Range(Cells(PFX - 1, PFY + 19), Cells(PFX + PFH, PFY + PFW + 20))
-        .Borders(8).Color = PFBBC  ' Top border
-        .Borders(8).Weight = 4
-        .Borders(7).Color = PFBBC  ' Bottom border
-        .Borders(7).Weight = 4
-        .Borders(9).Color = PFBDC  ' Left border
-        .Borders(9).Weight = 4
-        .Borders(10).Color = PFBDC  ' Right border
-        .Borders(10).Weight = 4
-    End With
-    '2p
-    Range(Cells(PFX - 1, PFY + 19), Cells(PFX + PFH, PFY + PFW + 20)).Interior.Color = PFBNC
-    
     ' Set interior properties for the playing field cells
     With Range(Cells(PFX, PFY), Cells(PFX + PFH - 1, PFY + PFW - 1))
         .HorizontalAlignment = 3  ' Center horizontally
@@ -106,26 +87,129 @@ Sub CreateGameSheet()
         .Borders(10).Weight = 4
     End With
     
-    ' 2p
-    With Range(Cells(PFX, PFY + 20), Cells(PFX + PFH - 1, PFY + PFW + 19))
-        .HorizontalAlignment = 3  ' Center horizontally
-        .VerticalAlignment = 2  ' Center vertically
-        .Font.Color = PFBC2
-        .Font.Name = "Arial"
-        .Font.Bold = 1
-        .Font.Size = 24
-        .Value = "X"  ' Placeholder value for testing
-        .Interior.Color = PFBC1
-        .Borders(8).Color = PFBDC
+    ' Draw statistics field with borders and background color
+    Range(Cells(SFX, SFY), Cells(SFX, SFY + 5)).Merge  ' Merge cells for "NEXT" label
+    For i = SFX To SFX + SFH - 1
+        Range(Cells(i, SFY + 7), Cells(i, SFY + 12)).Merge  ' Merge cells for score display
+    Next i
+    With Range(Cells(SFX - 1, SFY - 1), Cells(SFX + SFH, SFY + SFW))
+        .Borders(8).Color = SFBBC  ' Top border
         .Borders(8).Weight = 4
-        .Borders(7).Color = PFBDC
+        .Borders(7).Color = SFBBC  ' Bottom border
         .Borders(7).Weight = 4
-        .Borders(9).Color = PFBBC
+        .Borders(9).Color = SFBDC  ' Left border
         .Borders(9).Weight = 4
-        .Borders(10).Color = PFBBC
+        .Borders(10).Color = SFBDC  ' Right border
         .Borders(10).Weight = 4
     End With
-    
+    ' Set interior color for the borders
+    Range(Cells(SFX - 1, SFY - 1), Cells(SFX - 1, SFY + SFW)).Interior.Color = SFBNC
+    Range(Cells(SFX + SFH, SFY - 1), Cells(SFX + SFH, SFY + SFW)).Interior.Color = SFBNC
+    Range(Cells(SFX - 1, SFY - 1), Cells(SFX + SFH, SFY - 1)).Interior.Color = SFBNC
+    Range(Cells(SFX - 1, SFY + 6), Cells(SFX + SFH, SFY + 6)).Interior.Color = SFBNC
+    Range(Cells(SFX - 1, SFY + SFW), Cells(SFX + SFH, SFY + SFW)).Interior.Color = SFBNC
+    ' Set interior properties for the statistics field cells
+    With Range(Cells(SFX, SFY), Cells(SFX + SFH - 1, SFY + 5))
+        .Borders(8).Color = SFBDC
+        .Borders(8).Weight = 4
+        .Borders(7).Color = SFBDC
+        .Borders(7).Weight = 4
+        .Borders(9).Color = SFBBC
+        .Borders(9).Weight = 4
+        .Borders(10).Color = SFBBC
+        .Borders(10).Weight = 4
+        .Interior.Color = SFBC1
+    End With
+    ' Set interior properties for the score display cells
+    With Range(Cells(SFX, SFY + 7), Cells(SFX + SFH - 1, SFY + 12))
+        .Borders(8).Color = SFBDC
+        .Borders(8).Weight = 4
+        .Borders(7).Color = SFBDC
+        .Borders(7).Weight = 4
+        .Borders(9).Color = SFBBC
+        .Borders(9).Weight = 4
+        .Borders(10).Color = SFBBC
+        .Borders(10).Weight = 4
+        .Interior.Color = SFBC1
+    End With
+    ' Configure the "NEXT" label cell
+    With Cells(SFX, SFY)
+        .Font.Color = &H884444
+        .Font.Bold = True
+        .Font.Italic = True
+        .Font.Name = "Arial"
+        .Font.Size = 18
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .Value = "NEXT"
+    End With
+    ' Configure score and max score cells
+    For i = SFX To SFX + 2 Step 2
+        With Cells(i, SFY + 7)
+            .Font.Color = &H884444
+            .Font.Bold = True
+            .Font.Italic = True
+            .Font.Name = "Arial"
+            .Font.Size = 18
+            .HorizontalAlignment = xlCenter
+            .VerticalAlignment = xlBottom
+            If i = SFX Then
+                .Value = "SCORE"
+            Else
+                .Value = "MAX SCORE"
+            End If
+        End With
+        With Cells(i + 1, SFY + 7)
+            .Font.Color = &HFFDDDD
+            .Font.Bold = True
+            .Font.Italic = False
+            .Font.Name = "Arial"
+            .Font.Size = 20
+            .HorizontalAlignment = xlRight
+            .IndentLevel = 4
+            .VerticalAlignment = xlBottom
+            .Value = 0
+        End With
+    Next i
+    ' Configure remaining statistics cells
+    For i = SFX + 5 To SFX + 13 Step 2
+        With Cells(i, SFY + 7)
+            .Font.Color = &H884444
+            .Font.Bold = True
+            .Font.Italic = True
+            .Font.Name = "Arial"
+            .Font.Size = 18
+            .HorizontalAlignment = xlCenter
+            .VerticalAlignment = xlBottom
+            Select Case i
+                Case SFX + 5
+                    .Value = "LEVEL"
+                Case SFX + 7
+                    .Value = "BLOCKS"
+                Case SFX + 9
+                    .Value = "ROWS"
+                Case SFX + 11
+                    .Value = "QUADS"
+                Case Else
+                    .Value = "GAPLESS"
+            End Select
+        End With
+        With Cells(i + 1, SFY + 7)
+            .Font.Color = &HFF8888
+            .Font.Bold = True
+            .Font.Italic = False
+            .Font.Name = "Arial"
+            .Font.Size = 20
+            .HorizontalAlignment = xlCenter
+            .VerticalAlignment = xlBottom
+            .Value = 0
+            If i = SFX + 13 Then
+                .NumberFormat = "0%"
+            Else
+                .NumberFormat = ""
+            End If
+        End With
+    Next i
     
 End Sub
 
