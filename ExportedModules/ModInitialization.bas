@@ -459,7 +459,7 @@ Sub NewGame()
    
     'Initialize Statistics Display
     
-    Call DisplayStatistics
+    'Call DisplayStatistics
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim
