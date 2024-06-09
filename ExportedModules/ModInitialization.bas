@@ -2,12 +2,16 @@ Attribute VB_Name = "ModInitialization"
 Sub SetInitialValues()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets("Game") ' Change "Game" to your worksheet name
+    Set twoP = ¤u§@ªí1
     
     ' Set all columns width to 4
     ws.Cells.ColumnWidth = 4
+    twoP.Cells.ColumnWidth = 4
     
     ' Set all rows height to 20.1
     ws.Cells.RowHeight = 20.1
+    twoP.Cells.RowHeight = 20.1
+    
 
     'Blocks
     
@@ -459,7 +463,7 @@ Sub NewGame()
    
     'Initialize Statistics Display
     
-    'Call DisplayStatistics
+    Call DisplayStatistics
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim
