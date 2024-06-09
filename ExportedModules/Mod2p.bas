@@ -127,11 +127,19 @@ Sub CreateGameSheet_2p()
     End With
     
     
+    With Columns("M:T").Interior
+        .Pattern = xlNone
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    
 End Sub
 
 
 Sub UpdateGame_2p()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
+    
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet_2p
