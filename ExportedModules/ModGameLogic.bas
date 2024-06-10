@@ -9,6 +9,7 @@ Sub UpdateGame()
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
+    Call pauseBGM
 End Sub
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
@@ -93,6 +94,7 @@ Function GenerateBlocks(Blo As Byte)
         Call DrawPlayingField(0)
         Call EndTimer
         Call RemoveKeyAssignations
+        Call pauseBGM
         GamSta = 5
     Else
         Call AddBlock(CurBlo.X, CurBlo.Y, 1)
