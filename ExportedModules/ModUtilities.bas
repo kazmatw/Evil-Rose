@@ -1,4 +1,11 @@
 Attribute VB_Name = "ModUtilities"
+Sub SwitchToEnglish()
+    ActivateKeyboardLayout HKL_ENGLISH, KLF_SETFORPROCESS
+End Sub
+
+Sub SwitchToChineseBopomofo()
+    ActivateKeyboardLayout HKL_CHINESE_TRADITIONAL_PHONETIC, KLF_SETFORPROCESS
+End Sub
 Function ChangeBrightness(Col As Long, Per As Integer) As Long
     ' Declare variables for the RGB components of a color
     Dim R, G, B As Single
@@ -43,3 +50,8 @@ Function CopyBloLibArrToCurBloArr(Blo As Byte)
         Next j
     Next i
 End Function
+
+Sub OpenGithub()
+    ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/VBA-TETRIS.git"
+
+End Sub

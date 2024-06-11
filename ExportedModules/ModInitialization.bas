@@ -2,7 +2,7 @@ Attribute VB_Name = "ModInitialization"
 Sub SetInitialValues()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets("Game") ' Change "Game" to your worksheet name
-    Set twoP = ¤u§@ªí1
+    Set twoP = Game2P
     
     ' Set all columns width to 4
     ws.Cells.ColumnWidth = 4
@@ -240,13 +240,13 @@ Sub SetInitialValues()
     
         'Set 1
         
-        ColSet(1, 1) = 2
-        ColSet(1, 2) = 2
-        ColSet(1, 3) = 5
-        ColSet(1, 4) = 5
-        ColSet(1, 5) = 3
+        ColSet(1, 1) = 3
+        ColSet(1, 2) = 7
+        ColSet(1, 3) = 1
+        ColSet(1, 4) = 2
+        ColSet(1, 5) = 5
         ColSet(1, 6) = 4
-        ColSet(1, 7) = 1
+        ColSet(1, 7) = 6
         
         'Set 2
         
@@ -411,7 +411,7 @@ Sub SetInitialValues()
         .W = 13
         .X = PlaFie.X
     End With
-    BloPre = 1
+    BloPre = 3
     
     'Game Sheet Background Color
     

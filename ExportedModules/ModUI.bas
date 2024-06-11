@@ -343,7 +343,7 @@ Sub DrawPlayingField(Mode As Byte)
                         ' Handle the case for empty cell (value = 0)
                         Case Else
                             .Interior.Color = PlaFie.BacCol1  ' Set the background color
-                            .Value = "T"  ' Placeholder value for testing
+                            .Value = "X"  ' Placeholder value for testing
                             ' Set the top border color and weight
                             If i = 4 Then
                                 .Borders(8).Color = PlaFie.BorDCol
