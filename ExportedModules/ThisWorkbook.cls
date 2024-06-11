@@ -17,8 +17,8 @@ Private Sub Workbook_Open()
     
     ' Protect the "Game" worksheet but allow scripts to interact with it
     'With Worksheets("Game")
-    '    .Protect userinterfaceonly:=True
-    '    .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
+      '  .Protect userinterfaceonly:=True
+     '   .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
     'End With
     
     Call CreateGameSheet

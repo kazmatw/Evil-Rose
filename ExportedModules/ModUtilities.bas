@@ -50,3 +50,8 @@ Function CopyBloLibArrToCurBloArr(Blo As Byte)
         Next j
     Next i
 End Function
+
+Sub OpenGithub()
+    ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/VBA-TETRIS.git"
+
+End Sub
