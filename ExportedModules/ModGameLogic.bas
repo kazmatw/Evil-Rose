@@ -32,10 +32,10 @@ Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
                     Mat(X + i - 1, Y + j - 1) = CurBlo.ColInd
                     
                     ' Calculate score based on adjacency of placed parts to existing blocks
-                    If CurBlo.Arr(0 + i, 1 + j) = 0 And Mat(X + i - 2, Y + j - 1) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(2 + i, 1 + j) = 0 And Mat(X + i - 0, Y + j - 1) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(1 + i, 2 + j) = 0 And Mat(X + i - 1, Y + j - 0) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(0 + i, 1 + j) = 0 And Mat(X + i - 2, Y + j - 1) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(2 + i, 1 + j) = 0 And Mat(X + i - 0, Y + j - 1) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(1 + i, 2 + j) = 0 And Mat(X + i - 1, Y + j - 0) > 0 Then Sco = Sco + 10
 
                     ' Calculate gaps for potential penalties
                     If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) = 0 And Mat(X + 1 - 2, Y + j - 2) > 0 Then Gap = 1
@@ -94,7 +94,7 @@ Function GenerateBlocks(Blo As Byte)
     If CurBlo.Arr(2, 2) + CurBlo.Arr(2, 3) + CurBlo.Arr(2, 4) + CurBlo.Arr(2, 5) = 0 Then CurBlo.X = 3
     If IsBlock(CurBlo.X, CurBlo.Y) = 0 Then
         Call Gameover
-        ' §ó·s¹CÀ¸¬ö¿ý
+        ' Update history list
         Call UpdateGameRecord(Sta.Sco, Sta.Lev, Sta.Row, Sta.Qua)
     Else
         If IsGamePaused = False Then

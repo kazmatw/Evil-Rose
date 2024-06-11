@@ -35,6 +35,7 @@ Sub RegenerateNextBlockAndContinue()
         UsedTime = UsedTime + 1
     Else
         MsgBox "Usage limit exceeded."
+        ResumeGame
         Exit Sub
     End If
     
@@ -54,7 +55,7 @@ Sub UpdateGameRecord(score As Long, level As Long, rowsCleared As Integer, Quads
 
     Set historyList = ws_rd.OLEObjects("ListBox1").Object
 
-    ' 建立要顯示的訊息
+    ' Create the history data
     Dim displayText As String
     displayText = Format(Now, "yyyy-mm-dd hh:mm:ss") & _
                    " - Score: " & score & _
