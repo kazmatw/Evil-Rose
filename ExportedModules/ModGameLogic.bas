@@ -11,6 +11,7 @@ Sub UpdateGame()
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
+    Call pauseBGM
 End Sub
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)

@@ -464,6 +464,7 @@ Sub NewGame()
     'Initialize Statistics Display
     
     Call DisplayStatistics
+    Call BGM_Music
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim
