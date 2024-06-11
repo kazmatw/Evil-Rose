@@ -417,6 +417,12 @@ Sub SetInitialValues()
     
     GamSheBC = RGB(192, 192, 192)
     
+    'Extra Feature
+    FeatureLimit = 3
+    UsedTime = 0
+    ButtonFlag = 0
+    PausedFlag = False
+    
     'Execution Threshold
     
     Tim.ExeThrDef = 5

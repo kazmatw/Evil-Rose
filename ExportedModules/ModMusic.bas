@@ -10,7 +10,7 @@ Public Sub BGM_Music()
     
     mA = myPath & "/Music/BGM.wav"
     
-     Call PlaySound(mA, 0, 9)
+     ' Call PlaySound(mA, 0, 9)
      '(file path,beep sound 0 is false,1= Background Play 8=loop play 9=1+8)
 
 End Sub
@@ -22,3 +22,4 @@ Public Sub pauseBGM()
      'If there is no path will stop the music.
 
 End Sub
+
