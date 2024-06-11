@@ -1,4 +1,15 @@
 Attribute VB_Name = "ModGlobals"
+Public Declare PtrSafe Function ActivateKeyboardLayout Lib "user32" (ByVal HKL As LongPtr, ByVal Flags As Long) As LongPtr
+'Declare Windows API Function, using "PtrSafe" keyword to run in 64bit environment
+
+Public Const KLF_SETFORPROCESS = &H1
+'This const let this code only affect current thread (in Excel)
+
+' Keyboard Layout code
+Public Const HKL_ENGLISH As LongPtr = &H4090409 ' ENG(US)
+Public Const HKL_CHINESE_TRADITIONAL_PHONETIC As LongPtr = &H4040404 ' 繁體中文 (注音)
+
+
 Public Declare PtrSafe Function SetTimer Lib "user32" ( _
     ByVal HWnd As LongPtr, _
     ByVal nIDEvent As LongPtr, _

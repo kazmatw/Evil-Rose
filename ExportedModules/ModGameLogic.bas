@@ -1,5 +1,7 @@
 Attribute VB_Name = "ModGameLogic"
 Sub StartNewGame()
+    'Switch Keyboard input to EN(US) to avoid game crashs by using Chinese Bopomofo input
+    Call SwitchToEnglish
     ' Call the NewGame subroutine to start a new game
     Call NewGame
 End Sub
@@ -94,6 +96,7 @@ Function GenerateBlocks(Blo As Byte)
         Call EndTimer
         Call RemoveKeyAssignations
         GamSta = 5
+        Call DisplayGameoverInfo
     Else
         Call AddBlock(CurBlo.X, CurBlo.Y, 1)
         If Blo = 1 Then Sta.Blo = Sta.Blo + 1
@@ -109,7 +112,6 @@ Function GenerateBlocks(Blo As Byte)
     End If
     Tim.CurPas = 0
 End Function
-
 
 Function IsBlock(X As Byte, Y As Byte) As Byte
     ' Check if the specified position on the matrix is occupied
@@ -309,5 +311,14 @@ Sub CheckLevelProgress()
             CurColSet = CurColSet + 1  ' Move to the next color set for blocks
         End If
     End If
+End Sub
+
+Sub DisplayGameoverInfo()
+    
+    Call SwitchToChineseBopomofo
+    Dim message As String
+    message = "Gameover!!!" & vbCrLf & "Your score : " & CStr(Sta.Sco) & vbCrLf & "Highest score : " & CStr(Sta.ScoMax)
+    MsgBox message, vbOKOnly, "GameOver"
+
 End Sub
 
