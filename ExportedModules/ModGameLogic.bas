@@ -8,10 +8,10 @@ End Sub
 
 Sub UpdateGame()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
+    Call pauseBGM
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
-    Call pauseBGM
 End Sub
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
@@ -93,14 +93,13 @@ Function GenerateBlocks(Blo As Byte)
     Call CopyBloLibArrToCurBloArr(Nex)
     If CurBlo.Arr(2, 2) + CurBlo.Arr(2, 3) + CurBlo.Arr(2, 4) + CurBlo.Arr(2, 5) = 0 Then CurBlo.X = 3
     If IsBlock(CurBlo.X, CurBlo.Y) = 0 Then
-        Call DrawPlayingField(0)
-        Call EndTimer
-        Call RemoveKeyAssignations
-        Call pauseBGM
-        GamSta = 5
-        Call DisplayGameoverInfo
+        Call Gameover
+        ' §ó·s¹CÀ¸¬ö¿ý
+        Call UpdateGameRecord(Sta.Sco, Sta.Lev, Sta.Row, Sta.Qua)
     Else
-        Call AddBlock(CurBlo.X, CurBlo.Y, 1)
+        If IsGamePaused = False Then
+            Call AddBlock(CurBlo.X, CurBlo.Y, 1)
+        End If
         If Blo = 1 Then Sta.Blo = Sta.Blo + 1
         Call DrawPlayingField(1)
         Call DisplayNextBlocks
@@ -318,9 +317,32 @@ End Sub
 Sub DisplayGameoverInfo()
     
     Call SwitchToChineseBopomofo
-    Dim message As String
-    message = "Gameover!!!" & vbCrLf & "Your score : " & CStr(Sta.Sco) & vbCrLf & "Highest score : " & CStr(Sta.ScoMax)
-    MsgBox message, vbOKOnly, "GameOver"
+    GGForm.ScoreLabel.Caption = " Your Score :    " & CStr(Sta.Sco)
+    GGForm.MaxLabel.Caption = " Highest Score : " & CStr(Sta.ScoMax)
+    GGForm.Show
+
+End Sub
+Sub Gameover()
+
+    Call DrawPlayingField(0)
+    Call EndTimer
+    Call RemoveKeyAssignations
+    GamSta = 5
+    Call DisplayGameoverInfo
+
+End Sub
+
+Sub QuitTheGame()
+    Call KillTimer(0&, TimID)
+    PausedFlag = True
+    response = MsgBox("Are you sure about quitting this game?", vbOKCancel, "Quit")
+
+    If response = VbMsgBoxResult.vbOK Then
+        Call Gameover
+    Else
+        TimID = SetTimer(0&, 0&, MilSec, AddressOf TimerProcedure)
+        IsGamePaused = False
+    End If
 
 End Sub
 

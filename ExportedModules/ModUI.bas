@@ -438,7 +438,7 @@ Sub DrawDeletedRows()
                     .Borders(9).Weight = 4  ' Set bottom border weight
                 End If
                 .Interior.Color = PlaFie.BacCol1  ' Set interior color
-                .Value = "T"  ' Set placeholder value for testing
+                .Value = "X"  ' Set placeholder value for testing
             End With
         End If
     Next i
