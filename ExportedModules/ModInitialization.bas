@@ -1,16 +1,17 @@
 Attribute VB_Name = "ModInitialization"
 Sub SetInitialValues()
     Dim ws As Worksheet
-    Set ws = ThisWorkbook.Worksheets("Game") ' Change "Game" to your worksheet name
+    
+    Set ws = Game
     Set twoP = Game2P
     
     ' Set all columns width to 4
     ws.Cells.ColumnWidth = 4
-    twoP.Cells.ColumnWidth = 4
+    'twoP.Cells.ColumnWidth = 4
     
     ' Set all rows height to 20.1
     ws.Cells.RowHeight = 20.1
-    twoP.Cells.RowHeight = 20.1
+    'twoP.Cells.RowHeight = 20.1
     
 
     'Blocks
@@ -400,6 +401,16 @@ Sub SetInitialValues()
         .Y = 3
     End With
     
+    With PlaFie_2p
+        .BacCol1 = RGB(32, 32, 32)
+        .BacCol2 = RGB(48, 48, 48)
+        .BorBCol = RGB(224, 224, 224)
+        .BorDCol = RGB(8, 8, 8)
+        .BorNCol = RGB(128, 128, 128)
+        .X = 3
+        .Y = 32
+    End With
+    
     'Statistics Field
     
     With StaFie
@@ -411,6 +422,17 @@ Sub SetInitialValues()
         .W = 13
         .X = PlaFie.X
     End With
+    
+    With StaFie_2p
+        .BacCol1 = PlaFie.BacCol1
+        .BacCol2 = PlaFie.BacCol2
+        .BorBCol = PlaFie.BorBCol
+        .BorDCol = PlaFie.BorDCol
+        .BorNCol = PlaFie.BorNCol
+        .W = 6
+        .X = PlaFie_2p.X
+    End With
+    
     BloPre = 3
     
     'Game Sheet Background Color
@@ -451,6 +473,39 @@ Sub InitializeGame()
     Debug.Print "UBound(BloSet): "; UBound(BloSet)
 End Sub
 
+Sub InitializeGame_2p()
+    ' Create Playing Field Matrix
+    PlaFie.H = 16
+    PlaFie.W = 8
+    ReDim Mat(PlaFie.H + 6, PlaFie.W + 6)
+    ReDim MatCop(PlaFie.H + 6, PlaFie.W + 6)
+    For i = 1 To PlaFie.H + 6
+        For j = 1 To PlaFie.W + 6
+            Mat(i, j) = 1
+            MatCop(i, j) = 1
+        Next j
+    Next i
+    
+    PlaFie_2p.H = 16
+    PlaFie_2p.W = 8
+    ReDim Mat_2p(PlaFie_2p.H + 6, PlaFie_2p.W + 6)
+    ReDim MatCop_2p(PlaFie_2p.H + 6, PlaFie_2p.W + 6)
+    For i = 1 To PlaFie_2p.H + 6
+        For j = 1 To PlaFie_2p.W + 6
+            Mat_2p(i, j) = 1
+            MatCop_2p(i, j) = 1
+        Next j
+    Next i
+
+    ' Set current block and color set indices to valid values
+    CurColSet = 1
+    CurBloSet = 1
+    
+    ' Debug: Print current block set
+    Debug.Print "CurBloSet: "; CurBloSet
+    Debug.Print "UBound(BloSet): "; UBound(BloSet)
+End Sub
+
 
 
 Sub NewGame()
@@ -468,7 +523,7 @@ Sub NewGame()
     GamSta = 1
    
     'Initialize Statistics Display
-    
+    Twoplayer = False
     Call DisplayStatistics
     Call BGM_Music
     
@@ -482,3 +537,53 @@ Sub NewGame()
     
 End Sub
 
+
+
+Sub NewGame_2p()
+
+    With Sta
+        .Blo = 0
+        .Gap = 1
+        .GapSum = 0
+        .Lev = 1
+        .LevPro = 0
+        .Row = 0
+        .Sco = 0
+        .Qua = 0
+    End With
+    
+    With Sta_2p
+        .Blo = 0
+        .Gap = 1
+        .GapSum = 0
+        .Lev = 1
+        .LevPro = 0
+        .Row = 0
+        .Sco = 0
+        .Qua = 0
+    End With
+    GamSta = 1
+    GamSta_2p = 1
+    'Initialize Statistics Display
+    
+    Twoplayer = True
+    Call DisplayStatistics_2p
+    Call BGM_Music
+    
+    Tim.LevTim = 16
+    Tim.ExeThr = Tim.LevTim
+    
+    Tim_2p.LevTim = 16
+    Tim_2p.ExeThr = Tim_2p.LevTim
+    
+    Call ClearMatrix(1)
+    Call ClearMatrix_2p(1)
+    Randomize
+    Call GenerateBlocks(4)
+    Call GenerateBlocks_2p(4)
+    Call AssignKeys
+    Call AssignKeys_2p
+    Call StartTimer
+    Call StartTimer_2p
+    
+End Sub
