@@ -3,6 +3,9 @@ Sub StartNewGame()
     'Switch Keyboard input to EN(US) to avoid game crashs by using Chinese Bopomofo input
     Call SwitchToEnglish
     ' Call the NewGame subroutine to start a new game
+    Call SetInitialValues
+    Call InitializeGame
+    Call CreateGameSheet
     Call NewGame
 End Sub
 
@@ -13,6 +16,7 @@ Sub UpdateGame()
     Call InitializeGame
     Call CreateGameSheet
 End Sub
+
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
     ' Initialize variables for scoring and gap detection
@@ -102,8 +106,12 @@ Function GenerateBlocks(Blo As Byte)
         End If
         If Blo = 1 Then Sta.Blo = Sta.Blo + 1
         Call DrawPlayingField(1)
-        Call DisplayNextBlocks
-        Call DisplayStatistics
+        If Twoplayer = False Then
+            Call DisplayStatistics
+            Call DisplayNextBlocks
+        Else
+            Call DisplayStatistics_2p
+        End If
     End If
 
     ' Adjust timers based on level
@@ -327,6 +335,7 @@ Sub Gameover()
     Call DrawPlayingField(0)
     Call EndTimer
     Call RemoveKeyAssignations
+    Call pauseBGM
     GamSta = 5
     Call DisplayGameoverInfo
 
@@ -345,4 +354,3 @@ Sub QuitTheGame()
     End If
 
 End Sub
-

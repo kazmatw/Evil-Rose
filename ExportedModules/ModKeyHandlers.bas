@@ -6,17 +6,18 @@ Sub AssignKeys()
         .OnKey "{LEFT}", "KeyLeft"
         .OnKey "{RIGHT}", "KeyRight"
         .OnKey "{UP}", "KeyRotateCW"
+        .OnKey " ", "KeyDrop"
+        .OnKey "z", "RegenerateNextBlockAndContinue"
         .OnKey "s", "KeyDrop"
         .OnKey "a", "KeyLeft"
         .OnKey "d", "KeyRight"
         .OnKey "w", "KeyRotateCW"
         .OnKey "x", "KeyRotateCW"
         .OnKey "c", "KeyRotateCCW"
-        .OnKey " ", "KeyDrop"
+        
     End With
     On Error GoTo 0
 End Sub
-
 
 Sub RemoveKeyAssignations()
     On Error Resume Next
@@ -65,4 +66,3 @@ Sub KeyRotateCCW()
         Call RotateBlock(-1)
     End If
 End Sub
-

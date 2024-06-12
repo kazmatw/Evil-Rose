@@ -8,7 +8,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Private Sub CommandButton1_Click()
+    
+    GameRecords.Visible = xlSheetVisible
     Worksheets("Game Records").Activate
+    Game.Visible = xlSheetVeryHidden
+    
 End Sub
 
 Private Sub CommandButton2_Click()
@@ -33,4 +37,12 @@ End Sub
 
 Private Sub CommandButton7_Click()
     QuitTheGame
+End Sub
+
+Private Sub CommandButton8_Click()
+    
+    Game2P.Visible = xlSheetVisible
+    Worksheets("2p").Activate
+    Game.Visible = xlSheetVeryHidden
+    
 End Sub

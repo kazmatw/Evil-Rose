@@ -1,4 +1,15 @@
 Attribute VB_Name = "ModUI"
+Sub Init_GameSheetSize()
+
+    Set ws = Worksheets("Game")
+    
+    ' Set all columns width to 4
+    ws.Cells.ColumnWidth = 4
+    'Set all rows height to 20.1
+    ws.Cells.RowHeight = 20.1
+
+End Sub
+
 Sub CreateGameSheet()
     ' Declare variables for colors, dimensions, and positions of the game and statistics fields
     Dim PFBBC, PFBNC, PFBDC As Long  ' Game field border colors
