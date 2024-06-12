@@ -1,19 +1,7 @@
 Attribute VB_Name = "ModInitialization"
 Sub SetInitialValues()
-    Dim ws As Worksheet
     
-    Set ws = Game
-    Set twoP = Game2P
     
-    ' Set all columns width to 4
-    ws.Cells.ColumnWidth = 4
-    'twoP.Cells.ColumnWidth = 4
-    
-    ' Set all rows height to 20.1
-    ws.Cells.RowHeight = 20.1
-    'twoP.Cells.RowHeight = 20.1
-    
-
     'Blocks
     
     Dim DatStr As String
@@ -568,7 +556,7 @@ Sub NewGame_2p()
     
     Twoplayer = True
     Call DisplayStatistics_2p
-    Call BGM_Music
+    'Call BGM_Music
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim
@@ -585,5 +573,11 @@ Sub NewGame_2p()
     Call AssignKeys_2p
     Call StartTimer
     Call StartTimer_2p
+    
+End Sub
+
+Sub SelectMode()
+
+    ModeSelection.Show
     
 End Sub

@@ -9,9 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Private Sub Workbook_Open()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
-    Call SetInitialValues
-    Call InitializeGame
-    
+
     ' Disable all alerts to prevent Excel from showing default messages
     Application.DisplayAlerts = False
     
@@ -31,7 +29,7 @@ Private Sub Workbook_Open()
         .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
     End With
     
-    Call CreateGameSheet
+    'Call CreateGameSheet
     
     Dim ws_rd As Worksheet
     Set ws_rd = Worksheets("Game Records")
@@ -53,6 +51,9 @@ Private Sub Workbook_Open()
     ActiveWindow.DisplayGridlines = False
     currentSheet.Activate
     ActiveWindow.DisplayGridlines = False
+    
+    
+    Call SelectMode
     
 End Sub
 

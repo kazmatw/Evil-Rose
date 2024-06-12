@@ -3,6 +3,10 @@ Sub StartNewGame_2p()
     'Switch Keyboard input to EN(US) to avoid game crashs by using Chinese Bopomofo input
     Call SwitchToEnglish
     ' Call the NewGame subroutine to start a new game
+    Call Init_GameSheetSize_2p
+    Call SetInitialValues
+    Call InitializeGame_2p
+    Call CreateGameSheet_2p
     Call NewGame_2p
 End Sub
 

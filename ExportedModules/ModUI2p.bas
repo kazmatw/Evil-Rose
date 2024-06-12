@@ -1,5 +1,16 @@
 Attribute VB_Name = "ModUI2p"
+Sub Init_GameSheetSize_2p()
+
+    Set twoP = Worksheets("2p")
+    ' Set all columns width to 4
+    twoP.Cells.ColumnWidth = 4
+    'Set all rows height to 20.1
+    twoP.Cells.RowHeight = 20.1
+
+End Sub
+
 Sub CreateGameSheet_2p()
+
     ' Declare variables for colors, dimensions, and positions of the game and statistics fields
     Dim PFBBC, PFBNC, PFBDC, PFBBC_2p, PFBNC_2p, PFBDC_2p As Long ' Game field border colors
     Dim PFBC1, PFBC2, PFBC1_2p, PFBC2_2p As Long ' Game field background colors
