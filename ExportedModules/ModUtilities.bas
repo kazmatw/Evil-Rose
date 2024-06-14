@@ -1,4 +1,11 @@
 Attribute VB_Name = "ModUtilities"
+Sub SwitchToEnglish()
+    ActivateKeyboardLayout HKL_ENGLISH, KLF_SETFORPROCESS
+End Sub
+
+Sub SwitchToChineseBopomofo()
+    ActivateKeyboardLayout HKL_CHINESE_TRADITIONAL_PHONETIC, KLF_SETFORPROCESS
+End Sub
 Function ChangeBrightness(Col As Long, Per As Integer) As Long
     ' Declare variables for the RGB components of a color
     Dim R, G, B As Single
@@ -43,3 +50,18 @@ Function CopyBloLibArrToCurBloArr(Blo As Byte)
         Next j
     Next i
 End Function
+
+Function CopyBloLibArrToCurBloArr_2p(Blo_2p As Byte)
+    ' Loop through each element in the block's array (assuming 6x6 grid)
+    For i = 1 To 6
+        For j = 1 To 6
+            ' Copy each block definition from the block library to the current block's array
+            CurBlo_2p.Arr(i, j) = BloLib(BloSet(CurBloSet).Blo(Blo_2p)).Arr(i, j)
+        Next j
+    Next i
+End Function
+
+Sub OpenGithub()
+    ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/VBA-TETRIS.git"
+
+End Sub

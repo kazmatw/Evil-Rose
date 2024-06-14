@@ -7,3 +7,49 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
+Private Sub CommandButton1_Click()
+    
+    GameRecords.Visible = xlSheetVisible
+    Worksheets("Game Records").Activate
+    Game.Visible = xlSheetVeryHidden
+    Game2P.Visible = xlSheetVeryHidden
+    
+End Sub
+
+Private Sub CommandButton2_Click()
+    UpdateGame
+End Sub
+
+Private Sub CommandButton3_Click()
+    StartNewGame
+End Sub
+
+Private Sub CommandButton4_Click()
+    Rule.Show
+End Sub
+
+Private Sub CommandButton5_Click()
+    OpenGithub
+End Sub
+
+
+Private Sub CommandButton6_Click()
+    ImportModules
+End Sub
+
+Private Sub CommandButton7_Click()
+    QuitTheGame
+End Sub
+
+Private Sub CommandButton8_Click()
+        
+    Game2P.Visible = xlSheetVisible
+    Worksheets("2p").Activate
+    Game.Visible = xlSheetVeryHidden
+    GameRecords.Visible = xlSheetVeryHidden
+    
+End Sub
+
+Private Sub CommandButton9_Click()
+    ExportModules
+End Sub
