@@ -24,15 +24,16 @@ Private Sub CommandButton3_Click()
 End Sub
 
 Private Sub CommandButton4_Click()
-    PauseAndRestart
+    Rule.Show
 End Sub
 
 Private Sub CommandButton5_Click()
     OpenGithub
 End Sub
 
+
 Private Sub CommandButton6_Click()
-    RegenerateNextBlockAndContinue
+    ImportModules
 End Sub
 
 Private Sub CommandButton7_Click()
@@ -40,9 +41,13 @@ Private Sub CommandButton7_Click()
 End Sub
 
 Private Sub CommandButton8_Click()
-    
+        
     Game2P.Visible = xlSheetVisible
     Worksheets("2p").Activate
     Game.Visible = xlSheetVeryHidden
     
+End Sub
+
+Private Sub CommandButton9_Click()
+    ExportModules
 End Sub
