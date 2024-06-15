@@ -28,8 +28,6 @@ Public Sub pauseBGM()
      'If there is no path will stop the music.
 
 End Sub
-<<<<<<< Updated upstream
-=======
 
 Sub SetVolume(volume As Long)
     
@@ -77,4 +75,3 @@ End Sub
 
 
 
->>>>>>> Stashed changes

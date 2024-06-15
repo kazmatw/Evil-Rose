@@ -1,16 +1,22 @@
 Attribute VB_Name = "ModGameLogic"
 Sub StartNewGame()
+    'Switch Keyboard input to EN(US) to avoid game crashs by using Chinese Bopomofo input
+    Call SwitchToEnglish
     ' Call the NewGame subroutine to start a new game
+    Call SetInitialValues
+    Call InitializeGame
+    Call CreateGameSheet
     Call NewGame
 End Sub
 
 Sub UpdateGame()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
+    Call pauseBGM
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
-    Call pauseBGM
 End Sub
+
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
     ' Initialize variables for scoring and gap detection
@@ -30,10 +36,10 @@ Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
                     Mat(X + i - 1, Y + j - 1) = CurBlo.ColInd
                     
                     ' Calculate score based on adjacency of placed parts to existing blocks
-                    If CurBlo.Arr(0 + i, 1 + j) = 0 And Mat(X + i - 2, Y + j - 1) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(2 + i, 1 + j) = 0 And Mat(X + i - 0, Y + j - 1) > 0 Then Sco = Sco + 10
-                    If CurBlo.Arr(1 + i, 2 + j) = 0 And Mat(X + i - 1, Y + j - 0) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(0 + i, 1 + j) = 0 And Mat(X + i - 2, Y + j - 1) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(2 + i, 1 + j) = 0 And Mat(X + i - 0, Y + j - 1) > 0 Then Sco = Sco + 10
+                    'If CurBlo.Arr(1 + i, 2 + j) = 0 And Mat(X + i - 1, Y + j - 0) > 0 Then Sco = Sco + 10
 
                     ' Calculate gaps for potential penalties
                     If CurBlo.Arr(1 + i, 0 + j) = 0 And Mat(X + i - 1, Y + j - 2) = 0 And Mat(X + 1 - 2, Y + j - 2) > 0 Then Gap = 1
@@ -91,17 +97,21 @@ Function GenerateBlocks(Blo As Byte)
     Call CopyBloLibArrToCurBloArr(Nex)
     If CurBlo.Arr(2, 2) + CurBlo.Arr(2, 3) + CurBlo.Arr(2, 4) + CurBlo.Arr(2, 5) = 0 Then CurBlo.X = 3
     If IsBlock(CurBlo.X, CurBlo.Y) = 0 Then
-        Call DrawPlayingField(0)
-        Call EndTimer
-        Call RemoveKeyAssignations
-        Call pauseBGM
-        GamSta = 5
+        Call Gameover
+        ' Update history list
+        Call UpdateGameRecord(Sta.Sco, Sta.Lev, Sta.Row, Sta.Qua)
     Else
-        Call AddBlock(CurBlo.X, CurBlo.Y, 1)
+        If IsGamePaused = False Then
+            Call AddBlock(CurBlo.X, CurBlo.Y, 1)
+        End If
         If Blo = 1 Then Sta.Blo = Sta.Blo + 1
         Call DrawPlayingField(1)
-        Call DisplayNextBlocks
-        Call DisplayStatistics
+        If Twoplayer = False Then
+            Call DisplayStatistics
+            Call DisplayNextBlocks
+        Else
+            Call DisplayStatistics_2p
+        End If
     End If
 
     ' Adjust timers based on level
@@ -111,7 +121,6 @@ Function GenerateBlocks(Blo As Byte)
     End If
     Tim.CurPas = 0
 End Function
-
 
 Function IsBlock(X As Byte, Y As Byte) As Byte
     ' Check if the specified position on the matrix is occupied
@@ -313,3 +322,35 @@ Sub CheckLevelProgress()
     End If
 End Sub
 
+Sub DisplayGameoverInfo()
+    
+    Call SwitchToChineseBopomofo
+    GGForm.ScoreLabel.Caption = " Your Score :    " & CStr(Sta.Sco)
+    GGForm.MaxLabel.Caption = " Highest Score : " & CStr(Sta.ScoMax)
+    GGForm.Show
+
+End Sub
+Sub Gameover()
+
+    Call DrawPlayingField(0)
+    Call EndTimer
+    Call RemoveKeyAssignations
+    Call pauseBGM
+    GamSta = 5
+    Call DisplayGameoverInfo
+
+End Sub
+
+Sub QuitTheGame()
+    Call KillTimer(0&, TimID)
+    PausedFlag = True
+    response = MsgBox("Are you sure about quitting this game?", vbOKCancel, "Quit")
+
+    If response = VbMsgBoxResult.vbOK Then
+        Call Gameover
+    Else
+        TimID = SetTimer(0&, 0&, MilSec, AddressOf TimerProcedure)
+        IsGamePaused = False
+    End If
+
+End Sub

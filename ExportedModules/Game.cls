@@ -7,8 +7,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
-<<<<<<< Updated upstream
-=======
 Private Sub CommandButton1_Click()
     
     GameRecords.Visible = xlSheetVisible
@@ -18,11 +16,11 @@ Private Sub CommandButton1_Click()
 End Sub
 
 Private Sub CommandButton10_Click()
-    BGM_Next
+    BGM_Prev
 End Sub
 
 Private Sub CommandButton11_Click()
-    BGM_Prev
+    BGM_Next
 End Sub
 
 Private Sub CommandButton2_Click()
@@ -65,4 +63,3 @@ End Sub
 Private Sub ScrollBar1_Change()
     SetVolume ScrollBar1.Value
 End Sub
->>>>>>> Stashed changes

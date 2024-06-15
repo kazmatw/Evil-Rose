@@ -1,4 +1,15 @@
 Attribute VB_Name = "ModUI"
+Sub Init_GameSheetSize()
+
+    Set ws = Worksheets("Game")
+    
+    ' Set all columns width to 4
+    ws.Cells.ColumnWidth = 4
+    'Set all rows height to 20.1
+    ws.Cells.RowHeight = 20.1
+
+End Sub
+
 Sub CreateGameSheet()
     ' Declare variables for colors, dimensions, and positions of the game and statistics fields
     Dim PFBBC, PFBNC, PFBDC As Long  ' Game field border colors
@@ -343,7 +354,7 @@ Sub DrawPlayingField(Mode As Byte)
                         ' Handle the case for empty cell (value = 0)
                         Case Else
                             .Interior.Color = PlaFie.BacCol1  ' Set the background color
-                            .Value = "T"  ' Placeholder value for testing
+                            .Value = "X"  ' Placeholder value for testing
                             ' Set the top border color and weight
                             If i = 4 Then
                                 .Borders(8).Color = PlaFie.BorDCol
@@ -438,7 +449,7 @@ Sub DrawDeletedRows()
                     .Borders(9).Weight = 4  ' Set bottom border weight
                 End If
                 .Interior.Color = PlaFie.BacCol1  ' Set interior color
-                .Value = "T"  ' Set placeholder value for testing
+                .Value = "X"  ' Set placeholder value for testing
             End With
         End If
     Next i
