@@ -11,7 +11,7 @@ Private Sub CommandButton1_Click()
     
     GameRecords.Visible = xlSheetVisible
     Worksheets("Game Records").Activate
-    Game.Visible = xlSheetVeryHidden
+    Game.Visible = xlSheetVisible
     
 End Sub
 
@@ -44,10 +44,11 @@ Private Sub CommandButton8_Click()
         
     Game2P.Visible = xlSheetVisible
     Worksheets("2p").Activate
-    Game.Visible = xlSheetVeryHidden
+    Game.Visible = xlSheetVisible
     
 End Sub
 
 Private Sub CommandButton9_Click()
     ExportModules
 End Sub
+

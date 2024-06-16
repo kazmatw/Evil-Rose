@@ -59,11 +59,11 @@ Sub CreateGameSheet()
     ' Draw game sheet background
     Range(Cells(PFX - 2, PFY - 2), Cells(PFX - 2, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
     Range(Cells(PFX + PFH + 1, PFY - 2), Cells(PFX + PFH + 1, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
-    Range(Cells(PFX + PFH + 2, PFY - 2), Cells(PFX + PFH + 12, PFY + PFW + SFW + 10)).Interior.Color = xlNone
+    Range(Cells(PFX + PFH + 2, PFY - 2), Cells(PFX + PFH + 12, PFY + PFW + SFW + 10)).Interior.Color = GamSheBC
     Range(Cells(PFX - 2, PFY - 2), Cells(PFX + PFH + 1, PFY - 2)).Interior.Color = GamSheBC
     Range(Cells(PFX - 2, PFY + PFW + 1), Cells(PFX + PFH + 1, PFY + PFW + 1)).Interior.Color = GamSheBC
     Range(Cells(PFX - 2, PFY + PFW + SFW + 4), Cells(PFX + PFH + 1, PFY + PFW + SFW + 4)).Interior.Color = GamSheBC
-    Range(Cells(PFX - 2, PFY + PFW + SFW + 5), Cells(PFX + PFH + 1, PFY + PFW + SFW + 10)).Interior.Color = xlNone
+    Range(Cells(PFX - 2, PFY + PFW + SFW + 5), Cells(PFX + PFH + 1, PFY + PFW + SFW + 10)).Interior.Color = GamSheBC
    
     ' Draw game field with borders and background color
     With Range(Cells(PFX - 1, PFY - 1), Cells(PFX + PFH, PFY + PFW))
@@ -145,7 +145,7 @@ Sub CreateGameSheet()
     End With
     ' Configure the "NEXT" label cell
     With Cells(SFX, SFY)
-        .Font.Color = &H884444
+        .Font.Color = &HFDEDB0
         .Font.Bold = True
         .Font.Italic = True
         .Font.Name = "Arial"
@@ -157,7 +157,7 @@ Sub CreateGameSheet()
     ' Configure score and max score cells
     For i = SFX To SFX + 2 Step 2
         With Cells(i, SFY + 7)
-            .Font.Color = &H884444
+            .Font.Color = &HFDEDB0
             .Font.Bold = True
             .Font.Italic = True
             .Font.Name = "Arial"
@@ -171,7 +171,7 @@ Sub CreateGameSheet()
             End If
         End With
         With Cells(i + 1, SFY + 7)
-            .Font.Color = &HFFDDDD
+            .Font.Color = &HFDEDB0
             .Font.Bold = True
             .Font.Italic = False
             .Font.Name = "Arial"
@@ -185,7 +185,7 @@ Sub CreateGameSheet()
     ' Configure remaining statistics cells
     For i = SFX + 5 To SFX + 13 Step 2
         With Cells(i, SFY + 7)
-            .Font.Color = &H884444
+            .Font.Color = &HFDEDB0
             .Font.Bold = True
             .Font.Italic = True
             .Font.Name = "Arial"
@@ -206,7 +206,7 @@ Sub CreateGameSheet()
             End Select
         End With
         With Cells(i + 1, SFY + 7)
-            .Font.Color = &HFF8888
+            .Font.Color = &HFDEDB0
             .Font.Bold = True
             .Font.Italic = False
             .Font.Name = "Arial"
