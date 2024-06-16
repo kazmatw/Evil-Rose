@@ -382,9 +382,9 @@ Sub SetInitialValues()
     With PlaFie
         .BacCol1 = RGB(32, 32, 32)
         .BacCol2 = RGB(48, 48, 48)
-        .BorBCol = RGB(224, 224, 224)
-        .BorDCol = RGB(8, 8, 8)
-        .BorNCol = RGB(128, 128, 128)
+        .BorBCol = RGB(4, 118, 120)
+        .BorDCol = RGB(3, 253, 253)
+        .BorNCol = RGB(0, 0, 0)
         .X = 3
         .Y = 3
     End With
@@ -425,7 +425,7 @@ Sub SetInitialValues()
     
     'Game Sheet Background Color
     
-    GamSheBC = RGB(192, 192, 192)
+    GamSheBC = RGB(0, 0, 0)
     
     'Extra Feature
     FeatureLimit = 3
@@ -577,7 +577,22 @@ Sub NewGame_2p()
 End Sub
 
 Sub SelectMode()
-
     ModeSelection.Show
-    
 End Sub
+
+Sub HideAllSheetsExceptCover()
+    Dim ws As Worksheet
+    Dim visibleSheetName As String
+    
+    visibleSheetName = "Cover"
+
+    For Each ws In ThisWorkbook.Worksheets
+        If ws.Name <> visibleSheetName Then
+            ws.Visible = xlSheetVeryHidden
+        Else
+            ws.Visible = xlSheetVisible
+            ws.Activate
+        End If
+    Next ws
+End Sub
+

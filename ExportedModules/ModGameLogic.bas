@@ -325,8 +325,8 @@ End Sub
 Sub DisplayGameoverInfo()
     
     Call SwitchToChineseBopomofo
-    GGForm.ScoreLabel.Caption = " Your Score :    " & CStr(Sta.Sco)
-    GGForm.MaxLabel.Caption = " Highest Score : " & CStr(Sta.ScoMax)
+    GGForm.ScoreLabel.Caption = "" & CStr(Sta.Sco)
+    GGForm.MaxLabel.Caption = "" & CStr(Sta.ScoMax)
     GGForm.Show
 
 End Sub

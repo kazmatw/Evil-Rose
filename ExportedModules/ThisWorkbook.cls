@@ -14,25 +14,22 @@ Private Sub Workbook_Open()
     Application.DisplayAlerts = False
     
     ' Protect the "Game" worksheet but allow scripts to interact with it
-    With Worksheets("Game")
-        '.Protect userinterfaceonly:=True
-        .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
-    End With
+    Dim ws As Worksheet
     
-    With Worksheets("2p")
-        '.Protect userinterfaceonly:=True
-        .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
-    End With
-    
-    With Worksheets("Game Records")
-        .Protect userinterfaceonly:=True
-        .EnableSelection = xlNoSelection  ' Prevent any cell selection on this sheet
-    End With
+    'For Each ws In ThisWorkbook.Worksheets
+    '    With ws
+    '        .Protect UserInterfaceOnly:=True
+    '        .EnableSelection = xlNoSelection
+    '        .Activate
+    '        .Cells(22, 2).Select
+    '    End With
+    'Next ws
     
     'Call CreateGameSheet
+    Call HideAllSheetsExceptCover
     
     Dim ws_rd As Worksheet
-    Set ws_rd = Worksheets("Game Records")
+    Set ws_rd = Worksheets("Record")
     Dim historyList As MSForms.ListBox
 
     Set historyList = ws_rd.OLEObjects("ListBox1").Object
@@ -52,9 +49,6 @@ Private Sub Workbook_Open()
     currentSheet.Activate
     ActiveWindow.DisplayGridlines = False
     
-    
-    Call SelectMode
-    
 End Sub
 
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
@@ -71,7 +65,12 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
         .EnableSelection = xlNoRestrictions
     End With
     
-    With Worksheets("2p")
+    With Worksheets("Game2p")
+        .Unprotect
+        .EnableSelection = xlNoRestrictions
+    End With
+    
+    With Worksheets("Leaderboard")
         .Unprotect
         .EnableSelection = xlNoRestrictions
     End With
@@ -79,12 +78,12 @@ End Sub
 
 Private Sub Workbook_SheetBeforeDoubleClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
     ' Cancel any double-click actions on sheets to prevent unintended changes or interactions
-    Cancel = True
+    'Cancel = True
 End Sub
 
 Private Sub Workbook_SheetBeforeRightClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
     ' Cancel any right-click actions on sheets to maintain the game's interface integrity
-    Cancel = True
+    'Cancel = True
 End Sub
 
 
