@@ -513,7 +513,6 @@ Sub NewGame()
     'Initialize Statistics Display
     Twoplayer = False
     Call DisplayStatistics
-    Call BGM_Music
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim
@@ -555,7 +554,6 @@ Sub NewGame_2p()
     
     Twoplayer = True
     Call DisplayStatistics_2p
-    'Call BGM_Music
     
     Tim.LevTim = 16
     Tim.ExeThr = Tim.LevTim

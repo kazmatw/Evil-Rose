@@ -12,7 +12,6 @@ End Sub
 
 Sub UpdateGame_2p()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
-    Call pauseBGM
     Call SetInitialValues
     Call InitializeGame_2p
     Call CreateGameSheet_2p
@@ -325,7 +324,6 @@ Sub Gameover_2p()
     Call EndTimer_2p
     Call RemoveKeyAssignations
     Call RemoveKeyAssignations_2p
-    Call pauseBGM
     GamSta = 5
     GamSta_2p = 5
     'Call DisplayGameoverInfo
