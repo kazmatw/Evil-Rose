@@ -28,6 +28,8 @@ Private Sub Workbook_Open()
     Call HideAllSheetsExceptCover
     Call LoadListBoxData
     
+    Call BGM_Start
+    
     Dim ws_rd As Worksheet
     Set ws_rd = Worksheets("Record")
     Dim historyList As MSForms.ListBox

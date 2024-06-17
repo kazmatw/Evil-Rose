@@ -36,7 +36,7 @@ Sub RegenerateNextBlockAndContinue()
         Call GenerateBlocks(1)
         Call ResumeGameTimer
     Else
-        MsgBox "Usage limit exceeded."
+        MsgBox "Too many times, bro!"
         Call ResumeGameTimer
     End If
 End Sub

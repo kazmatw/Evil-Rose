@@ -1,22 +1,22 @@
 Attribute VB_Name = "ModGameLogic"
 Sub StartNewGame()
-    'Switch Keyboard input to EN(US) to avoid game crashs by using Chinese Bopomofo input
+    PauseGameTimer
     Call SwitchToEnglish
-    ' Call the NewGame subroutine to start a new game
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
     Call NewGame
+    IsGamePaused = False
+    PausedFlag = False
 End Sub
 
 Sub UpdateGame()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
-    Call pauseBGM
+    PauseGameTimer
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
 End Sub
-
 
 Function AddBlock(X As Byte, Y As Byte, Tem As Byte)
     ' Initialize variables for scoring and gap detection
@@ -336,7 +336,6 @@ Sub Gameover()
     Call DrawPlayingField(0)
     Call EndTimer
     Call RemoveKeyAssignations
-    Call pauseBGM
     GamSta = 5
     Call DisplayGameoverInfo
 End Sub
