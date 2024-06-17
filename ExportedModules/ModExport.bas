@@ -3,11 +3,19 @@ Sub ExportModules()
     Dim vbProj As VBIDE.VBProject
     Dim vbComp As VBIDE.VBComponent
     Dim exportPath As String
+    Dim file As String
 
     exportPath = ThisWorkbook.Path & "\ExportedModules\"
+    
     If Dir(exportPath, vbDirectory) = "" Then
         MkDir exportPath
     End If
+
+    file = Dir(exportPath & "*.*")
+    Do While file <> ""
+        Kill exportPath & file
+        file = Dir()
+    Loop
 
     Set vbProj = ThisWorkbook.VBProject
 
@@ -16,13 +24,13 @@ Sub ExportModules()
             Case vbext_ct_StdModule, vbext_ct_ClassModule, vbext_ct_MSForm
                 vbComp.Export exportPath & vbComp.Name & ".bas"
             Case vbext_ct_Document
-                vbComp.Export exportPath & vbComp.Name & ".cls"
             Case Else
-                ' Skip other types
         End Select
     Next vbComp
+    
     MsgBox "Export complete!"
 End Sub
+
 
 Sub ImportModules()
     Dim vbProj As VBIDE.VBProject
