@@ -83,8 +83,9 @@ Sub CreateGameSheet()
         .HorizontalAlignment = 3  ' Center horizontally
         .VerticalAlignment = 2  ' Center vertically
         .Font.Color = PFBC2
-        .Font.Name = "Arial"
+        .Font.Name = "Mont"
         .Font.Bold = 1
+        .Font.Italic = False
         .Font.Size = 24
         .Value = "X"  ' Placeholder value for testing
         .Interior.Color = PFBC1
@@ -147,9 +148,9 @@ Sub CreateGameSheet()
     With Cells(SFX, SFY)
         .Font.Color = &HFDEDB0
         .Font.Bold = True
-        .Font.Italic = True
-        .Font.Name = "Arial"
+        .Font.Name = "Mont"
         .Font.Size = 18
+        .Font.Italic = False
         .HorizontalAlignment = xlCenter
         .VerticalAlignment = xlBottom
         .Value = "NEXT"
@@ -159,9 +160,9 @@ Sub CreateGameSheet()
         With Cells(i, SFY + 7)
             .Font.Color = &HFDEDB0
             .Font.Bold = True
-            .Font.Italic = True
-            .Font.Name = "Arial"
+            .Font.Name = "Mont"
             .Font.Size = 18
+            .Font.Italic = False
             .HorizontalAlignment = xlCenter
             .VerticalAlignment = xlBottom
             If i = SFX Then
@@ -173,9 +174,9 @@ Sub CreateGameSheet()
         With Cells(i + 1, SFY + 7)
             .Font.Color = &HFDEDB0
             .Font.Bold = True
-            .Font.Italic = False
-            .Font.Name = "Arial"
+            .Font.Name = "Mont"
             .Font.Size = 20
+            .Font.Italic = False
             .HorizontalAlignment = xlRight
             .IndentLevel = 4
             .VerticalAlignment = xlBottom
@@ -187,9 +188,9 @@ Sub CreateGameSheet()
         With Cells(i, SFY + 7)
             .Font.Color = &HFDEDB0
             .Font.Bold = True
-            .Font.Italic = True
-            .Font.Name = "Arial"
+            .Font.Name = "Mont"
             .Font.Size = 18
+            .Font.Italic = False
             .HorizontalAlignment = xlCenter
             .VerticalAlignment = xlBottom
             Select Case i
@@ -208,9 +209,9 @@ Sub CreateGameSheet()
         With Cells(i + 1, SFY + 7)
             .Font.Color = &HFDEDB0
             .Font.Bold = True
-            .Font.Italic = False
-            .Font.Name = "Arial"
+            .Font.Name = "Mont"
             .Font.Size = 20
+            .Font.Italic = False
             .HorizontalAlignment = xlCenter
             .VerticalAlignment = xlBottom
             .Value = 0

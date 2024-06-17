@@ -65,3 +65,8 @@ Sub OpenGithub()
     ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/VBA-TETRIS.git"
 
 End Sub
+
+'Sub setName()
+'    userName = InputBox("Please enter your name:", "Enter Name")
+'End Sub
+

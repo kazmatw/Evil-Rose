@@ -14,7 +14,7 @@ Sub AssignKeys()
         .OnKey "w", "KeyRotateCW"
         .OnKey "x", "KeyRotateCW"
         .OnKey "c", "KeyRotateCCW"
-        .OnKey "p", "PauseAndRestart"
+        .OnKey "p", "TogglePauseResumeGame"
     End With
     On Error GoTo 0
 End Sub

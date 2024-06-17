@@ -528,7 +528,6 @@ End Sub
 
 
 Sub NewGame_2p()
-
     With Sta
         .Blo = 0
         .Gap = 1
@@ -576,9 +575,6 @@ Sub NewGame_2p()
     
 End Sub
 
-Sub SelectMode()
-    ModeSelection.Show
-End Sub
 
 Sub HideAllSheetsExceptCover()
     Dim ws As Worksheet

@@ -41,6 +41,18 @@ Sub MenuToComingsoon()
     Menu.Visible = xlSheetVeryHidden
 End Sub
 
+Sub MenuToMusic()
+    Music.Visible = xlSheetVisible
+    Sheets("Music").Activate
+    Menu.Visible = xlSheetVeryHidden
+End Sub
+
+Sub MusicToMenu()
+    Menu.Visible = xlSheetVisible
+    Sheets("Menu").Activate
+    Music.Visible = xlSheetVeryHidden
+End Sub
+
 Sub ComingsoonToMenu()
     Menu.Visible = xlSheetVisible
     Sheets("Menu").Activate

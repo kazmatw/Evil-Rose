@@ -16,17 +16,17 @@ Private Sub Workbook_Open()
     ' Protect the "Game" worksheet but allow scripts to interact with it
     Dim ws As Worksheet
     
-    'For Each ws In ThisWorkbook.Worksheets
-    '    With ws
-    '        .Protect UserInterfaceOnly:=True
-    '        .EnableSelection = xlNoSelection
-    '        .Activate
-    '        .Cells(22, 2).Select
-    '    End With
-    'Next ws
-    
-    'Call CreateGameSheet
+    For Each ws In ThisWorkbook.Worksheets
+        With ws
+            .Protect UserInterfaceOnly:=True
+            .EnableSelection = xlNoSelection
+            .Activate
+            .Cells(22, 2).Select
+        End With
+    Next ws
+
     Call HideAllSheetsExceptCover
+    Call LoadListBoxData
     
     Dim ws_rd As Worksheet
     Set ws_rd = Worksheets("Record")
@@ -35,55 +35,42 @@ Private Sub Workbook_Open()
     Set historyList = ws_rd.OLEObjects("ListBox1").Object
 
     With historyList
-        .Font.Name = "Arial"
-        .Font.Size = 10
+        .Font.Name = "Mont"
+        .Font.Size = 15
+        .Font.Bold = True
         .BackColor = RGB(0, 0, 0)
-        .ForeColor = RGB(255, 255, 255)
+        .ForeColor = &HFDEDB0
+        .Enabled = False
     End With
-    
-    Dim currentSheet As Worksheet
-    Set currentSheet = ThisWorkbook.ActiveSheet
-    
-    ws_rd.Activate
-    ActiveWindow.DisplayGridlines = False
-    currentSheet.Activate
-    ActiveWindow.DisplayGridlines = False
-    
 End Sub
 
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
     ' Terminate the game timer and remove key bindings
     Call EndTimer
     Call RemoveKeyAssignations
+    Call SaveListBoxData
     
     ' Re-enable alerts for future Excel interactions
     Application.DisplayAlerts = True
     
-    ' Unprotect the "Game" worksheet and allow unrestricted selection
-    With Worksheets("Game")
-        .Unprotect
-        .EnableSelection = xlNoRestrictions
-    End With
-    
-    With Worksheets("Game2p")
-        .Unprotect
-        .EnableSelection = xlNoRestrictions
-    End With
-    
-    With Worksheets("Leaderboard")
-        .Unprotect
-        .EnableSelection = xlNoRestrictions
-    End With
+    ' Unprotect all worksheets and allow unrestricted selection
+    Dim ws As Worksheet
+    For Each ws In ThisWorkbook.Worksheets
+        With ws
+            .Unprotect
+            .EnableSelection = xlNoRestrictions
+        End With
+    Next ws
 End Sub
 
 Private Sub Workbook_SheetBeforeDoubleClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
     ' Cancel any double-click actions on sheets to prevent unintended changes or interactions
-    'Cancel = True
+    Cancel = True
 End Sub
 
 Private Sub Workbook_SheetBeforeRightClick(ByVal Sh As Object, ByVal Target As Range, Cancel As Boolean)
     ' Cancel any right-click actions on sheets to maintain the game's interface integrity
-    'Cancel = True
+    Cancel = True
 End Sub
 
 

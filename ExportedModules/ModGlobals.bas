@@ -8,7 +8,7 @@ Public Const KLF_SETFORPROCESS = &H1
 ' Keyboard Layout code
 Public Const HKL_ENGLISH As LongPtr = &H4090409 ' ENG(US)
 Public Const HKL_CHINESE_TRADITIONAL_PHONETIC As LongPtr = &H4040404 ' 繁體中文 (注音)
-
+Public userName As String
 
 Public Declare PtrSafe Function SetTimer Lib "user32" ( _
     ByVal HWnd As LongPtr, _

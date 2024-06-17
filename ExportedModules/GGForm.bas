@@ -13,14 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
-
+Private Sub TextBox1_Change()
+    userName = TextBox1.Text
 End Sub
 
-Private Sub MaxLabel_Click()
-
-End Sub
-
-Private Sub UserForm_Click()
-
-End Sub

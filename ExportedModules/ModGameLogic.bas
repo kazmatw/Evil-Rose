@@ -99,7 +99,9 @@ Function GenerateBlocks(Blo As Byte)
     If IsBlock(CurBlo.X, CurBlo.Y) = 0 Then
         Call Gameover
         ' Update history list
+        'Call setName
         Call UpdateGameRecord(Sta.Sco, Sta.Lev, Sta.Row, Sta.Qua)
+        Sta.Sco = 0
     Else
         If IsGamePaused = False Then
             Call AddBlock(CurBlo.X, CurBlo.Y, 1)
@@ -331,20 +333,18 @@ Sub DisplayGameoverInfo()
 
 End Sub
 Sub Gameover()
-
     Call DrawPlayingField(0)
     Call EndTimer
     Call RemoveKeyAssignations
     Call pauseBGM
     GamSta = 5
     Call DisplayGameoverInfo
-
 End Sub
 
 Sub QuitTheGame()
     Call KillTimer(0&, TimID)
     PausedFlag = True
-    response = MsgBox("Are you sure about quitting this game?", vbOKCancel, "Quit")
+    response = MsgBox("Don't give up, bro! Are you sure about quitting?", vbOKCancel, "Quit")
 
     If response = VbMsgBoxResult.vbOK Then
         Call Gameover
