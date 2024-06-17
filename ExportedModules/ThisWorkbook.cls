@@ -52,7 +52,7 @@ Private Sub Workbook_Open()
     currentSheet.Activate
     ActiveWindow.DisplayGridlines = False
     
-    
+    Call BGM_Start
     Call SelectMode
     
 End Sub
