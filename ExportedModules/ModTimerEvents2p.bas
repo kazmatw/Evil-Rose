@@ -13,7 +13,7 @@ Sub EndTimer_2p()
     KillTimer_2p 0&, TimID_2p  ' Kill the timer with the ID TimID
 End Sub
 
-Sub TimerProcedure_2p(ByVal HWnd_2p As LongPtr, ByVal uMsg_2p As LongPtr, ByVal nIDEvent_2p As LongPtr, ByVal dwTimer_2p As LongPtr)
+Sub TimerProcedure_2p()
     ' Check if the current pass equals the execution threshold
     If Tim_2p.CurPas = Tim_2p.ExeThr Then
         Tim_2p.CurPas = 0  ' Reset the current pass counter
