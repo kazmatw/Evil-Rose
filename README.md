@@ -51,7 +51,7 @@ Writing a game in VBA might just be one of the most masochistic things to do in 
 
 I primarily use Canva for the art design, and I've even started a 30-day trial for this, but I'm considering a long-term subscription moving forward. 🤔
 
-Also, ensure IsDebugMode in ThisWorkbook is set to true before making any changes, as we restrict player interaction with Excel during gameplay to avoid crashes.
+Also, ensure `IsDebugMode` in `ThisWorkbook` is set to true before making any changes, as we restrict player interaction with Excel during gameplay to avoid crashes.
 
 ## Contributions
 
