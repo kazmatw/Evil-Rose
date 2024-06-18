@@ -9,28 +9,30 @@ Sub StartTimer()
 End Sub
 
 Sub EndTimer()
-    On Error Resume Next  ' Continue if there's an error
+    On Error Resume Next
     KillTimer 0&, TimID  ' Kill the timer with the ID TimID
 End Sub
 
-Sub TimerProcedure(ByVal HWnd As LongPtr, ByVal uMsg As LongPtr, ByVal nIDEvent As LongPtr, ByVal dwTimer As LongPtr)
+Sub TimerProcedure()
     ' Check if the current pass equals the execution threshold
+    ' Tim.CurPas will be init (= 0) in GenerateBlocks(4)
+    ' Tim.ExeThr = 16 at first
     If Tim.CurPas = Tim.ExeThr Then
-        Tim.CurPas = 0  ' Reset the current pass counter
-        ' Execute actions based on the game state
+        Tim.CurPas = 0  ' Reset the current pass
+        ' Do gameLogic based on Game status
         Select Case GamSta
             Case 1  ' Game is running
                 Call MoveBlockDown(0)  ' Move the block down
             Case 2  ' Rows have been deleted
                 Call DrawDeletedRows  ' Draw the deleted rows
             Case 3  ' Rows need to be dropped
-                Call DropRows  ' Drop the rows
-                Call GenerateBlocks(1)  ' Generate a new block
+                Call DropRows
+                Call GenerateBlocks(1)  ' Generate one new block
                 Tim.ExeThr = Tim.LevTim  ' Set the execution threshold to the level timer
                 GamSta = 1  ' Set game state back to running
         End Select
     Else
-        Tim.CurPas = Tim.CurPas + 1  ' Increment the current pass counter
+        Tim.CurPas = Tim.CurPas + 1  ' Increment the current pass
     End If
 End Sub
 

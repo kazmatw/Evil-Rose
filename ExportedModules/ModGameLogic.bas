@@ -115,13 +115,20 @@ Function GenerateBlocks(Blo As Byte)
             Call DisplayStatistics_2p
         End If
     End If
+    
+    
+    
 
     ' Adjust timers based on level
-    If Tim.LevTim <> 17 - Sta.Lev Then
-        Tim.LevTim = 17 - Sta.Lev
+    If Tim.LevTim <> 16 - 3 * (Sta.Lev - 1) Then
+        Tim.LevTim = 16 - 3 * (Sta.Lev - 1)
         Tim.ExeThr = Tim.LevTim
+        Debug.Print "速度增加"; Tim.LevTim
     End If
     Tim.CurPas = 0
+    
+    
+    
 End Function
 
 Function IsBlock(X As Byte, Y As Byte) As Byte
@@ -285,8 +292,9 @@ Function DeleteRows() As Byte
         Sta.LevPro = Sta.LevPro + 12  ' Increment level progress significantly
     Else
         Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 100))  ' Standard score increment
-        Sta.LevPro = Sta.LevPro + (RowCou * 2)  ' Standard level progress increment
+        Sta.LevPro = Sta.LevPro + (RowCou * 10)  ' Standard level progress increment
     End If
+    Debug.Print "LevelProgrss: "; Sta.LevPro
     Call CheckLevelProgress  ' Check and update level progress based on score and cleared rows
     DeleteRows = RowCou  ' Return the number of rows deleted
 End Function
@@ -314,9 +322,9 @@ End Sub
 
 Sub CheckLevelProgress()
     ' Check if the level progress has reached or exceeded 100 points
-    If Sta.LevPro >= 100 Then
-        Sta.LevPro = Sta.LevPro - 100  ' Reset level progress after incrementing level
-        ' Check if the level is below the maximum level cap
+    If Sta.LevPro >= 50 Then
+        Sta.LevPro = Sta.LevPro - 50  ' Reset level progress after incrementing level
+        ' Check if the level is below the maximum level
         If Sta.Lev < 15 Then
             Sta.Lev = Sta.Lev + 1  ' Increment the level
             CurColSet = CurColSet + 1  ' Move to the next color set for blocks
