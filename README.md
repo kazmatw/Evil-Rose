@@ -6,13 +6,11 @@ If you like it, please give us a star!⭐️
 ## Brief introduction
 
 This project was initially developed with my classmate for a school course, but as we grew more enthusiastic about it, we decided to continue updating it.  
-Its name "Evil Rose" was inspired by the Chinese homophones of "Tetris".  
-Right, no particular reason XD.
+Its name "Evil Rose" was inspired by the Chinese homophones of "Tetris" XD
 
 ## Preview
 
-I personally like to include many beautiful images in the README, and this time is no exception.  
-Let's see what this game looks like:  
+Let's see what this game looks like:
 
 - Cover
   ![cover](./Picture/preview_cover.png)
@@ -20,10 +18,14 @@ Let's see what this game looks like:
   ![menu](./Picture/preview_menu.png)
 - Rule
   ![rule](./Picture/preview_rules.png)
-- Game1p
-  ![1p](./Picture/preview_1p.png)
+- Game
+  ![game](./Picture/preview_game.png)
 - Gameover
   ![gameover](./Picture/preview_gameover.png)
+- Leaderboard
+  ![rank](./Picture/preview_rank.png)
+- Music
+  ![music](./Picture/preview_music.png)
 
 ## Installation and Running
 
@@ -34,9 +36,14 @@ Let's see what this game looks like:
 
 It's just that EZ.😌
 
+## Features
+
+We know that Tetris is very popular nowadays, with many great websites and apps available. To introduce a new challenge, we've changed the number of columns to eight, which disrupts many common patterns. Additionally, we do not group the pieces into sets of seven, allowing the same piece the chance to appear consecutively. This tests the player's observation skills and strategic thinking. However, we do offer three opportunities to change the order of the pieces, so please seize the chance and have fun.  
+Try to beat us, we've thrown down the gauntlet to you. 😼
+
 ## Controls
 
-- Read the `How to play` page. 📖
+- Read the `How to play` game page. 📖
 
 ## Development
 
@@ -44,9 +51,11 @@ Writing a game in VBA might just be one of the most masochistic things to do in 
 
 I primarily use Canva for the art design, and I've even started a 30-day trial for this, but I'm considering a long-term subscription moving forward. 🤔
 
+Also, ensure IsDebugMode in ThisWorkbook is set to true before making any changes, as we restrict player interaction with Excel during gameplay to avoid crashes.
+
 ## Contributions
 
-Feel free to send a PR if you want to update something~    
+Feel free to send a PR if you want to update something~  
 Just one thing to remember: make sure to run `ExportModules` under `ModExport` before you update. This way, we can clearly see what specific changes you've made.
 
 ## License and Permissions
