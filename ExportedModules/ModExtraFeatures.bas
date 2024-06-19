@@ -5,6 +5,7 @@ Public FeatureLimit As Integer
 Public UsedTime As Integer
 
 Sub TogglePauseResumeGame()
+    Call ClickSoundEffect
     If IsGamePaused Then
         IsGamePaused = False
         Call DrawPlayingField(1)
@@ -26,6 +27,7 @@ Sub ResumeGameTimer()
 End Sub
 
 Sub RegenerateNextBlockAndContinue()
+    Call ClickSoundEffect
     If Not IsGamePaused Then
         Call PauseGameTimer
     End If
