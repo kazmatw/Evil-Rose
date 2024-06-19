@@ -1,6 +1,7 @@
 Attribute VB_Name = "ModGameLogic"
 Sub StartNewGame()
     PauseGameTimer
+    Call ClickSoundEffect
     Call SwitchToEnglish
     Call SetInitialValues
     Call InitializeGame
@@ -13,6 +14,7 @@ End Sub
 Sub UpdateGame()
     ' Initialize game by setting initial values, preparing the game, creating the sheet
     PauseGameTimer
+    Call ClickSoundEffect
     Call SetInitialValues
     Call InitializeGame
     Call CreateGameSheet
@@ -289,10 +291,12 @@ Function DeleteRows() As Byte
     ' Update statistics based on rows cleared
     Sta.Row = Sta.Row + RowCou
     If RowCou = 4 Then  ' Special case for clearing four rows (a Tetris)
+        Call ComboDeleteSoundEffect
         Sta.Qua = Sta.Qua + 1  ' Increment the Tetris count
         Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 100))  ' Score multiplier for a Tetris
         Sta.LevPro = Sta.LevPro + 12  ' Increment level progress significantly
     Else
+        Call DeleteSoundEffect
         Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 10))  ' Standard score increment
         Sta.LevPro = Sta.LevPro + (RowCou * 10)  ' Standard level progress increment
     End If
@@ -303,6 +307,8 @@ End Function
 
 Sub DropRows()
     ' Loop through rows in the playing field
+    Call DeleteRowSoundEffect
+    
     For i = 4 To PlaFie.H + 3
         ' Check if the current row needs to be dropped (if it differs from the matrix copy)
         If Mat(i, 4) <> MatCop(i, 4) Then
@@ -346,11 +352,13 @@ Sub Gameover()
     Call DrawPlayingField(0)
     Call EndTimer
     Call RemoveKeyAssignations
+    Call GameOverSoundEffect
     GamSta = 5
     Call DisplayGameoverInfo
 End Sub
 
 Sub QuitTheGame()
+    Call ClickSoundEffect
     Call KillTimer(0&, TimID)
     PausedFlag = True
     response = MsgBox("Don't give up, bro! Are you sure about quitting?", vbOKCancel, "Quit")

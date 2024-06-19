@@ -1,70 +1,69 @@
 Attribute VB_Name = "ModMusic"
-
 Private Declare PtrSafe Function PlaySound Lib "winmm.dll" _
         Alias "PlaySoundA" (ByVal lpszName As String, _
         ByVal hModule As LongPtr, ByVal dwFlags As Long) As Boolean
-   
 
-        
-Private Declare PtrSafe Function waveOutSetVolume Lib "winmm.dll" (ByVal hwo As LongPtr, ByVal dwVolume As Long) As Long
-
+Private Declare PtrSafe Function mciSendString Lib "winmm.dll" Alias "mciSendStringA" (ByVal lpstrCommand As String, _
+     ByVal lpstrReturnString As String, _
+     ByVal uReturnLength As Long, _
+     ByVal hwndCallback As Long) As Long
 
 Public BGMList As Integer
 Public AudioVolume As Long
+Public command As String
 Public PlayStop As Boolean
 
-Sub BGM_Music()
- 
+Public Sub BGM_Music()
+
     If BGMList = 0 Then BGMList = 1
-
-    myPath = ActiveWorkbook.Path
-    mA = myPath & "/Music/BGM" & CStr(BGMList) & ".wav"
     
-     Call PlaySound(mA, 0, 9)
-     '(file path,beep sound 0 is false,1= Background Play 8=loop play 9=1+8)
+    myPath = ActiveWorkbook.Path
+    command = "open """ & myPath & "\Music\BGM" & CStr(BGMList) & ".mp3"" type mpegvideo alias MyMusic"
+    Call mciSendString(command, vbNullString, 0, 0)
+    'open the music file
+    
+    command = "play MyMusic repeat"
+    ' repeat the BGM
+    Call mciSendString(command, vbNullString, 0, 0)
+    
+    mciSendString "setaudio MyMusic volume to " & AudioVolume, vbNullString, 0, 0
+    
+    PlayStop = True
      
-     PlayStop = True
-
 End Sub
 
 Sub pauseBGM()
     
-     Call PlaySound(" ", 0, 1)
-     'If there is no path will stop the music.
-     PlayStop = False
+    mciSendString "stop MyMusic", vbNullString, 0, 0
+    mciSendString "close MyMusic", vbNullString, 0, 0
+    PlayStop = False
 
 End Sub
 
-Sub SetVolume(volume As Long)
+Sub realpauseBGM()
     
-    'Make sure the volume is within range
-    If volume < 0 Then volume = 0
-    If volume > 65535 Then volume = 65535
+    mciSendString "pause MyMusic", vbNullString, 0, 0
+    PlayStop = False
 
-    ' 0 is using the default audio device volume
-    waveOutSetVolume 0, volume
-    
 End Sub
 
 Sub VolumeUp()
 
-    'Make sure the volume is within range
-    AudioVolume = AudioVolume + (65535 * 0.1)
-    If AudioVolume > 65535 Then AudioVolume = 65535
+     'Make sure the volume is within range
+    AudioVolume = AudioVolume + (1000 * 0.1)
+    If AudioVolume > 1000 Then AudioVolume = 1000
     
-    ' 0 is using the default audio device volume
-    waveOutSetVolume 0, AudioVolume
+    mciSendString "setaudio MyMusic volume to " & AudioVolume, vbNullString, 0, 0
 
 End Sub
 
 Sub VolumeDown()
     
     'Make sure the volume is within range
-    AudioVolume = AudioVolume - (65535 * 0.1)
+    AudioVolume = AudioVolume - (1000 * 0.1)
     If AudioVolume < 0 Then AudioVolume = 0
     
-    ' 0 is using the default audio device volume
-    waveOutSetVolume 0, AudioVolume
+    mciSendString "setaudio MyMusic volume to " & AudioVolume, vbNullString, 0, 0
 
 End Sub
 
@@ -74,6 +73,7 @@ Sub BGM_Next()
    
    If BGMList > 10 Then BGMList = 1
    
+   Call pauseBGM
    Call BGM_Music
 
 End Sub
@@ -84,25 +84,26 @@ Sub BGM_Prev()
    
    If BGMList <= 0 Then BGMList = 10
    
+   Call pauseBGM
    Call BGM_Music
 
 End Sub
 
 
 Sub BGM_Start()
-    
-   AudioVolume = 65535
 
    BGMList = 1
    
-   Call BGM_Music
+   If AudioVolume = 0 Then AudioVolume = 100
    
+   Call BGM_Music
+    
 End Sub
 
 Sub BGM_PlayorStop()
     
     If PlayStop = True Then
-        Call pauseBGM
+        Call realpauseBGM
     Else
         Call BGM_Music
     End If
@@ -116,7 +117,42 @@ Sub GameOverSoundEffect()
     mA = myPath & "/Music/gameover.wav"
     
     Call PlaySound(mA, 0, 1)
-     
-    PlayStop = False
     
 End Sub
+
+Sub ClickSoundEffect()
+
+    myPath = ActiveWorkbook.Path
+    mA = myPath & "/Music/ClickEffect.wav"
+    
+    Call PlaySound(mA, 0, 1)
+    
+End Sub
+
+Sub DeleteSoundEffect()
+
+    myPath = ActiveWorkbook.Path
+    mA = myPath & "/Music/deleteBlock.wav"
+    
+    Call PlaySound(mA, 0, 1)
+    
+End Sub
+
+Sub ComboDeleteSoundEffect()
+
+    myPath = ActiveWorkbook.Path
+    mA = myPath & "/Music/ComboDelete.wav"
+    
+    Call PlaySound(mA, 0, 1)
+    
+End Sub
+
+Sub DeleteRowSoundEffect()
+
+    myPath = ActiveWorkbook.Path
+    mA = myPath & "/Music/DeleteRow.wav"
+    
+    Call PlaySound(mA, 0, 1)
+    
+End Sub
+
