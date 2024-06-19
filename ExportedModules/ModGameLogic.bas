@@ -288,10 +288,10 @@ Function DeleteRows() As Byte
     Sta.Row = Sta.Row + RowCou
     If RowCou = 4 Then  ' Special case for clearing four rows (a Tetris)
         Sta.Qua = Sta.Qua + 1  ' Increment the Tetris count
-        Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 1000))  ' Score multiplier for a Tetris
+        Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 100))  ' Score multiplier for a Tetris
         Sta.LevPro = Sta.LevPro + 12  ' Increment level progress significantly
     Else
-        Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 100))  ' Standard score increment
+        Sta.Sco = Sta.Sco + (RowCou * (Sta.Lev * 10))  ' Standard score increment
         Sta.LevPro = Sta.LevPro + (RowCou * 10)  ' Standard level progress increment
     End If
     Debug.Print "LevelProgrss: "; Sta.LevPro

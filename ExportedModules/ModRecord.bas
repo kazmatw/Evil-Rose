@@ -89,6 +89,7 @@ Sub ClearHistory()
     Set historyList = ws_rd.OLEObjects("ListBox1").Object
 
     historyList.Clear
+    Sheets("Data").Cells.Clear
 End Sub
 
 Sub SaveListBoxData()
