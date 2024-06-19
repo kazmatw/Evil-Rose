@@ -62,7 +62,7 @@ Function CopyBloLibArrToCurBloArr_2p(Blo_2p As Byte)
 End Function
 
 Sub OpenGithub()
-    ctiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/Evil-Rose.git"
+    ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/Evil-Rose.git"
 
 End Sub
 
