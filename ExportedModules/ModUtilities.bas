@@ -62,11 +62,156 @@ Function CopyBloLibArrToCurBloArr_2p(Blo_2p As Byte)
 End Function
 
 Sub OpenGithub()
-    ActiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/VBA-TETRIS.git"
+    ctiveWorkbook.FollowHyperlink Address:="https://github.com/kazmatw/Evil-Rose.git"
 
 End Sub
 
-'Sub setName()
-'    userName = InputBox("Please enter your name:", "Enter Name")
-'End Sub
+Sub SetColor_GG()
+    ' Declare variables for coordinates and dimensions
+    Dim X, Y As Byte
+    Dim H, W As Byte
+    
+    ' Load game field properties from PlaFie
+    With PlaFie
+        X = .X  ' X coordinate of the game field
+        Y = .Y  ' Y coordinate of the game field
+        H = .H  ' Height of the game field
+        W = .W  ' Width of the game field
+    End With
+    
+    CurColSet = 16  'Change all Color to gray
+    
+    ' Loop through the game matrix dimensions
+    For i = 4 To H + 3
+        For j = 4 To W + 3
+            ' Check if the current cell needs updating
+            With Cells(X + i - 4, Y + j - 4)
+                If Mat(i, j) <> 255 Then
+                    Select Case Mat(i, j)
+                        Case Is > 0
+                            .Value = ""
+                            .Interior.Color = ColLib(ColSet(CurColSet, Mat(i, j))).Nor  ' Set the normal color
+                            ' Set the top border color and weight
+                            If i > 4 Then
+                                If Mat(i - 1, j) = 0 Then
+                                    .Borders(8).Color = ColLib(ColSet(CurColSet, Mat(i, j))).Bri
+                                    .Borders(8).Weight = 2
+                                ElseIf Mat(i - 1, j) <> Mat(i, j) And Mat(i - 1, j) < 255 Then
+                                    .Borders(8).Color = &H444444
+                                    .Borders(8).Weight = 2
+                                Else
+                                    .Borders(8).LineStyle = -4142
+                                End If
+                            Else
+                                .Borders(8).Color = PlaFie.BorDCol
+                                .Borders(8).Weight = 4
+                            End If
+                            ' Set the bottom border color and weight
+                            If j > 4 Then
+                                If Mat(i, j - 1) = 0 Then
+                                    .Borders(7).Color = ColLib(ColSet(CurColSet, Mat(i, j))).Bri
+                                    .Borders(7).Weight = 2
+                                ElseIf Mat(i, j - 1) <> Mat(i, j) And Mat(i, j - 1) < 255 Then
+                                    .Borders(7).Color = &H444444
+                                    .Borders(7).Weight = 2
+                                Else
+                                    .Borders(7).LineStyle = -4142
+                                End If
+                            Else
+                                .Borders(7).Color = PlaFie.BorDCol
+                                .Borders(7).Weight = 4
+                            End If
+                            ' Set the left border color and weight
+                            If i < H + 3 Then
+                                If Mat(i + 1, j) = 0 Then
+                                    .Borders(9).Color = ColLib(ColSet(CurColSet, Mat(i, j))).Dar
+                                    .Borders(9).Weight = 2
+                                ElseIf Mat(i + 1, j) <> Mat(i, j) And Mat(i + 1, j) < 255 Then
+                                    .Borders(9).Color = &H444444
+                                    .Borders(9).Weight = 2
+                                Else
+                                    .Borders(9).LineStyle = -4142
+                                End If
+                            Else
+                                .Borders(9).Color = PlaFie.BorBCol
+                                .Borders(9).Weight = 4
+                            End If
+                            ' Set the right border color and weight
+                            If j < W + 3 Then
+                                If Mat(i, j + 1) = 0 Then
+                                    .Borders(10).Color = ColLib(ColSet(CurColSet, Mat(i, j))).Dar
+                                    .Borders(10).Weight = 2
+                                ElseIf Mat(i, j + 1) <> Mat(i, j) And Mat(i, j + 1) < 255 Then
+                                    .Borders(10).Color = &H444444
+                                    .Borders(10).Weight = 2
+                                Else
+                                    .Borders(10).LineStyle = -4142
+                                End If
+                            Else
+                                .Borders(10).Color = PlaFie.BorBCol
+                                .Borders(10).Weight = 4
+                            End If
+                        ' Handle the case for empty cell (value = 0)
+                        Case Else
+                            .Interior.Color = PlaFie.BacCol1  ' Set the background color
+                            .Value = "X"  ' Placeholder value for testing
+                            ' Set the top border color and weight
+                            If i = 4 Then
+                                .Borders(8).Color = PlaFie.BorDCol
+                                .Borders(8).Weight = 4
+                            ElseIf Mat(i - 1, j) = 255 Then
+                                .Borders(8).Color = CurBlo.DarCol
+                                .Borders(8).Weight = 4
+                            ElseIf Mat(i - 1, j) > 0 Then
+                                .Borders(8).Color = ColLib(ColSet(CurColSet, Mat(i - 1, j))).Dar
+                                .Borders(8).Weight = 2
+                            Else
+                                .Borders(8).LineStyle = -4142
+                            End If
+                            ' Set the bottom border color and weight
+                            If j = 4 Then
+                                .Borders(7).Color = PlaFie.BorDCol
+                                .Borders(7).Weight = 4
+                            ElseIf Mat(i, j - 1) = 255 Then
+                                .Borders(7).Color = CurBlo.DarCol
+                                .Borders(7).Weight = 4
+                            ElseIf Mat(i, j - 1) > 0 Then
+                                .Borders(7).Color = ColLib(ColSet(CurColSet, Mat(i, j - 1))).Dar
+                                .Borders(7).Weight = 2
+                            Else
+                                .Borders(7).LineStyle = -4142
+                            End If
+                            ' Set the left border color and weight
+                            If i = H + 3 Then
+                                .Borders(9).Color = PlaFie.BorBCol
+                                .Borders(9).Weight = 4
+                            ElseIf Mat(i + 1, j) = 255 Then
+                                .Borders(9).Color = CurBlo.BriCol
+                                .Borders(9).Weight = 4
+                            ElseIf Mat(i + 1, j) > 0 Then
+                                .Borders(9).Color = ColLib(ColSet(CurColSet, Mat(i + 1, j))).Bri
+                                .Borders(9).Weight = 2
+                            Else
+                                .Borders(9).LineStyle = -4142
+                            End If
+                            ' Set the right border color and weight
+                            If j = W + 3 Then
+                                .Borders(10).Color = PlaFie.BorBCol
+                                .Borders(10).Weight = 4
+                            ElseIf Mat(i, j + 1) = 255 Then
+                                .Borders(10).Color = CurBlo.BriCol
+                                .Borders(10).Weight = 4
+                            ElseIf Mat(i, j + 1) > 0 Then
+                                .Borders(10).Color = ColLib(ColSet(CurColSet, Mat(i, j + 1))).Bri
+                                .Borders(10).Weight = 2
+                            Else
+                                .Borders(10).LineStyle = -4142
+                            End If
+                    End Select
+                End If
+            End With
+        Next j
+    Next i
+End Sub
+
 

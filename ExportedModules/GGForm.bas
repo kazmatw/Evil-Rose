@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} GGForm 
    Caption         =   "UserForm1"
-   ClientHeight    =   9432.001
-   ClientLeft      =   108
-   ClientTop       =   456
+   ClientHeight    =   9435.001
+   ClientLeft      =   105
+   ClientTop       =   450
    ClientWidth     =   16980
    OleObjectBlob   =   "GGForm.frx":0000
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   1  '©ÒÄÝµøµ¡¤¤¥¡
 End
 Attribute VB_Name = "GGForm"
 Attribute VB_GlobalNameSpace = False
@@ -20,11 +20,17 @@ Private Sub TextBox1_Change()
 End Sub
 Private Sub TextBox1_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
     If KeyCode = vbKeyReturn Then
-        regEx.Pattern = "[\s+]" 'set regEx pattern
+        regEx.Pattern = "\s+" 'set regEx pattern
         If regEx.Test(userName) Or userName = "" Then
-            response = MsgBox("YOU HAVEN'T ENTER YOUR NAME!!!", vbOKOnly, "WARNING")
+            msg = MsgBox("YOU HAVEN'T ENTER YOUR NAME!!!", vbOKOnly, "WARNING")
         Else
-            Unload GGForm 'Close GGForm
+            regEx.Pattern = "[0-9A-Za-z]+"
+            If regEx.Test(userName) Then
+                Unload GGForm 'Close GGForm
+            Else
+                warningMsg = "Your Name Can Only Contain Letters And Digits!" & vbNewLine & "Example: iLoveVBA2024"
+                msg = MsgBox(warningMsg, vbOKOnly, "WARNING")
+            End If
         End If
         KeyCode = 0
     End If

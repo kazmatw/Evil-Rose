@@ -7,7 +7,7 @@ Public Const KLF_SETFORPROCESS = &H1
 
 ' Keyboard Layout code
 Public Const HKL_ENGLISH As LongPtr = &H4090409 ' ENG(US)
-Public Const HKL_CHINESE_TRADITIONAL_PHONETIC As LongPtr = &H4040404 ' 繁體中文 (注音)
+Public Const HKL_CHINESE_TRADITIONAL_PHONETIC As LongPtr = &H4040404 ' TraditionalChinese(Taiwan)
 Public userName As String
 
 Public Declare PtrSafe Function SetTimer Lib "user32" ( _
@@ -152,7 +152,7 @@ Public Type TTim_2p                          'Timer for two player
     LevTim As Byte                              'Level Timer
 End Type
 
-Public ColLib(112) As TCol                  'Color Library
+Public ColLib(119) As TCol                  'Color Library
 Public ColSet() As Byte                     'Color Sets
 Public BloLib(7) As TBlo                    'Block Library
 Public BloSet() As TBloSet                  'Block Set

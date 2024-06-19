@@ -218,14 +218,23 @@ Sub SetInitialValues()
     ColLib(110).Nor = RGB(161, 130, 103)    'Gold Brown
     ColLib(111).Nor = RGB(85, 88, 90)       'Platinum
     
-    For i = 1 To 112
+    '7 different types of gray
+    ColLib(112).Nor = RGB(54, 54, 54)       'DarkGray
+    ColLib(113).Nor = RGB(79, 79, 79)       'DarkSlateGray
+    ColLib(114).Nor = RGB(105, 105, 105)    'DimGray
+    ColLib(115).Nor = RGB(128, 128, 128)    'Gray
+    ColLib(117).Nor = RGB(153, 153, 153)    'Light Slate Gray
+    ColLib(116).Nor = RGB(182, 182, 182)    'Silver
+    ColLib(118).Nor = RGB(211, 211, 211)    'Light Gray
+    
+    For i = 1 To 119
         ColLib(i).Bri = ChangeBrightness(ColLib(i).Nor, 240)
         ColLib(i).Dar = ChangeBrightness(ColLib(i).Nor, -40)
     Next i
     
     'Color Sets
     
-    ReDim ColSet(15, 7)
+    ReDim ColSet(16, 7)
     
         'Set 1
         
@@ -376,7 +385,16 @@ Sub SetInitialValues()
         ColSet(15, 5) = 103
         ColSet(15, 6) = 104
         ColSet(15, 7) = 105
-    
+        
+        'Set 16 (GG Color Set)
+        ColSet(16, 1) = 112
+        ColSet(16, 2) = 113
+        ColSet(16, 3) = 114
+        ColSet(16, 4) = 115
+        ColSet(16, 5) = 116
+        ColSet(16, 6) = 117
+        ColSet(16, 7) = 118
+        
     'Playing Field
     
     With PlaFie
