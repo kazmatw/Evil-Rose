@@ -26,6 +26,8 @@ Public Sub BGM_Music()
     ' repeat the BGM
     Call mciSendString(command, vbNullString, 0, 0)
     
+    mciSendString "setaudio MyMusic volume to " & AudioVolume, vbNullString, 0, 0
+    
     PlayStop = True
      
 End Sub
@@ -69,7 +71,7 @@ Sub BGM_Next()
     
    BGMList = BGMList + 1
    
-   If BGMList > 5 Then BGMList = 1
+   If BGMList > 10 Then BGMList = 1
    
    Call pauseBGM
    Call BGM_Music
@@ -80,7 +82,7 @@ Sub BGM_Prev()
     
    BGMList = BGMList - 1
    
-   If BGMList <= 0 Then BGMList = 5
+   If BGMList <= 0 Then BGMList = 10
    
    Call pauseBGM
    Call BGM_Music
@@ -92,11 +94,10 @@ Sub BGM_Start()
 
    BGMList = 1
    
+   If AudioVolume = 0 Then AudioVolume = 100
+   
    Call BGM_Music
-   
-   AudioVolume = 100
-   mciSendString "setaudio MyMusic volume to " & AudioVolume, vbNullString, 0, 0
-   
+    
 End Sub
 
 Sub BGM_PlayorStop()
