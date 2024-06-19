@@ -97,6 +97,8 @@ Function GenerateBlocks(Blo As Byte)
     Call CopyBloLibArrToCurBloArr(Nex)
     If CurBlo.Arr(2, 2) + CurBlo.Arr(2, 3) + CurBlo.Arr(2, 4) + CurBlo.Arr(2, 5) = 0 Then CurBlo.X = 3
     If IsBlock(CurBlo.X, CurBlo.Y) = 0 Then
+    
+        Call SetColor_GG
         Call Gameover
         ' Update history list
         'Call setName
