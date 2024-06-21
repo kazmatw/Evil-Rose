@@ -58,6 +58,41 @@ Also, ensure `IsDebugMode` in `ThisWorkbook` is set to true before making any ch
 Feel free to send a PR if you want to update something~  
 Just one thing to remember: make sure to run `ExportModules` under `ModExport` before you update. This way, we can clearly see what specific changes you've made.
 
+## Troubleshooting
+**Q: What if I experience formatting issues due to different screen ratios?**
+
+**A:** If formatting appears off due to varying screen ratios, remember that Excel isn't primarily designed for gaming. You can choose to ignore these minor discrepancies or adjust the settings manually to better suit your display.
+
+
+### Enabling VBA Macro Trust Settings
+
+**Q: How do I enable VBA macro trust settings in Excel?**
+
+**A:** To run VBA macros, you must adjust the macro trust settings in Excel. Follow these steps to enable the execution of VBA macros:
+
+1. **Open Excel**: Launch your Microsoft Excel application.
+2. **Access the Trust Center**:
+   - Click on `File` in the top menu.
+   - Select `Options` from the menu to open the Excel Options dialog box.
+   - Click on `Trust Center` in the list on the left side of the dialog box.
+   - Click on the `Trust Center Settings` button.
+
+3. **Adjust Macro Settings**:
+   - Inside the Trust Center, select `Macro Settings` from the menu on the left.
+   - Choose `Enable all macros (not recommended; potentially dangerous code can run)` to allow all macros to run. This setting will enable your VBA macros but be aware that it might expose your system to potentially harmful code.
+   - Alternatively, select `Disable all macros with notification` to get notifications when macros are disabled.
+
+4. **Trust access to the VBA project object model** (optional):
+   - Still in the Trust Center settings, under the `Macro Settings` section, check the box for `Trust access to the VBA project object model` if your macro interacts with the project object model.
+
+5. **Save Changes**:
+   - Click `OK` to apply the changes and close the Trust Center.
+   - Click `OK` again to close the Excel Options dialog.
+
+6. **Restart Excel**: Close and reopen Excel for the changes to take effect.
+
+These steps should enable you to run VBA macros in your Excel projects safely. Remember to only enable macros from trusted sources to protect your system from potential threats.
+
 ## License and Permissions
 
 This game is provided for free and can be freely used and distributed. However, please ensure compliance with applicable laws and regulations.
